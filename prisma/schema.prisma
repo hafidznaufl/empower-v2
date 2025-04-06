@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+}
+
+model User {
+    id        String    @id @default(uuid())
+    name      String
+    email     String    @unique
+    password  String
+    role      UserRole  @default(CLIENT)
+    avatarURL String?
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+    blog      Blog[]
+}
+
+model ReportIncident {
+    id                   String           @id @default(uuid())
+    name                 String
+    email                String
+    dayOfBirth           DateTime         @default(now())
+    gender               GenderKind
+    studyProgram         StudyProgramKind
+    semester             String
+    contact              String
+    willingToBeContacted Boolean
+    incidentDescription  String
+    fileURL              String[]
+    reportStatus         ReportStatus     @default(PENDING)
+    createdAt            DateTime         @default(now())
+    updatedAt            DateTime         @updatedAt
+    deletedAt            DateTime?
+}
+
+model Event {
+    id           String    @id @default(uuid())
+    title        String
+    description  String
+    date         DateTime
+    timeStart    DateTime
+    timeEnd      DateTime
+    location     String
+    capacity     String
+    thumbnailURL String?
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+    deletedAt    DateTime?
+}
+
+model Blog {
+    id           String       @id @default(uuid())
+    title        String
+    description  String
+    content      Json
+    category     BLogCategory @default(NEWS)
+    thumbnailURL String?
+    authorId     String
+    author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    status       BlogStatus   @default(DRAFT)
+    createdAt    DateTime     @default(now())
+    updatedAt    DateTime     @updatedAt
+    deletedAt    DateTime?
+}
+
+enum BlogStatus {
+    DRAFT
+    PUBLISHED
+    ARCHIVED
+}
+
+enum BLogCategory {
+    BLOG
+    NEWS
+    PRESS_RELEASE
+}
+
+enum GenderKind {
+    MALE
+    FEMALE
+}
+
+enum StudyProgramKind {
+    INFORMATION_SYSTEMS
+    COMPUTER_ENGINEERING
+    DIGITAL_BUSINESS
+}
+
+enum ReportStatus {
+    PENDING
+    IN_PROCESS
+    PROVEN_LIGHTLY_SACTIONED
+    PROVEN_MODERATElYY_SACTIONED
+    PROVEN_SEVERELY_SACTIONED
+}
+
+enum UserRole {
+    ADMIN
+    CLIENT
+}
