@@ -3,10 +3,20 @@
 import { type Column, type ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
 import { UserColumn } from './schema'
-import { BadgeCheck, BadgeMinus } from 'lucide-react'
-import { Badge } from '~/app/_components/ui/badge'
+import { BadgeCheck, BadgeMinus, FilePen, MoreHorizontal } from 'lucide-react'
+import { Badge } from '~/components/ui/badge'
 import { formatName, formatReadableDate } from '~/utils/hooks/useFormat'
-import { DataTableBooleanColumnHeader } from '~/app/_components/tables/data-table-boolean-header'
+import { DataTableBooleanColumnHeader } from '~/components/tables/data-table-boolean-header'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '~/components/ui/dropdown-menu'
+import { Button } from '~/components/ui/button'
+import TableSheet from '~/components/tables/table-sheet'
+import UpdateUserForm from './update-user-form'
 
 export const columns: ColumnDef<UserColumn>[] = [
   {
@@ -48,19 +58,6 @@ export const columns: ColumnDef<UserColumn>[] = [
     cell: ({ row }) => <div className="px-2">{row.getValue('name')}</div>,
   },
   {
-    accessorKey: 'referralCode',
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        className="px-2"
-        title="Referral Code"
-      />
-    ),
-    cell: ({ row }) => (
-      <div className="px-2">{row.getValue('referralCode')}</div>
-    ),
-  },
-  {
     accessorKey: 'role',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} className="px-2" title="Role" />
@@ -98,5 +95,37 @@ export const columns: ColumnDef<UserColumn>[] = [
         {formatReadableDate(row.getValue('lastSignIn')) ?? 'N/A'}
       </div>
     ),
+  },
+  {
+    id: 'actions',
+    enableHiding: false,
+    cell: ({ row }) => {
+      const user = row.original
+      const id = user.id
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <TableSheet
+              button={true}
+              buttonContent="Update Role User"
+              title="Update Role User"
+              description="Modify the role of the selected user."
+              buttonVariant="default"
+              buttonSize="sm"
+              icon={<FilePen className="h-4 w-4" />}
+            >
+              <UpdateUserForm id={id ?? ''} />
+            </TableSheet>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
+    },
   },
 ]

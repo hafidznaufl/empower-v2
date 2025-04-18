@@ -10,7 +10,6 @@ export default async function page() {
       <ClientRootLayout>
         <Hero />
         <EventCard />
-        <FooterContent />
       </ClientRootLayout>
     </HydrateClient>
   )

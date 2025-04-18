@@ -24,10 +24,11 @@ import { DataTablePagination } from './table-pagination'
 import { DataTableViewOptions } from './table-view-options'
 import { Input } from '../ui/input'
 import TableSheet from './table-sheet'
-import CreateVoucherForm from '~/app/(admin-pages)/dashboard/voucher/_components/create-voucher-form'
 import { type UseMutationResult } from '@tanstack/react-query'
 import TableDeleteSelected from './table-delete-selected'
 import { FileWarning } from 'lucide-react'
+import { Button } from '../ui/button'
+import { useRouter } from 'next/navigation'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -38,6 +39,8 @@ interface DataTableProps<TData, TValue> {
   sheetTitle: string
   sheetDescription: string
   sheetIcon: React.ReactNode
+  useSheet?: boolean
+  linkTo?: string
   deleteManyMutation?: UseMutationResult<
     unknown,
     unknown,
@@ -60,11 +63,14 @@ export function DataTable<TData extends { id: string }, TValue>({
   sheetTitle,
   sheetDescription,
   sheetIcon,
+  useSheet = true,
+  linkTo,
   deleteManyMutation,
   components,
   allowCreate = true,
   allowDelete = true,
 }: DataTableProps<TData, TValue>) {
+  const router = useRouter()
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -116,28 +122,33 @@ export function DataTable<TData extends { id: string }, TValue>({
           ) : (
             <>
               <DataTableViewOptions table={table} />
-              {allowCreate && (
-                <TableSheet
-                  buttonContent={buttonContent}
-                  title={sheetTitle}
-                  description={sheetDescription}
-                  icon={sheetIcon}
-                >
-                  {components?.CustomComponent ? (
-                    <components.CustomComponent />
-                  ) : (
-                    <div className="flex flex-col items-center text-gray-500">
-                      <FileWarning className="mb-2 h-6 w-6" />
-                      <p className="text-sm">
-                        Oops! No custom component found.
-                      </p>
-                      <p className="text-xs">
-                        Please provide a valid component.
-                      </p>
-                    </div>
-                  )}
-                </TableSheet>
-              )}
+              {allowCreate &&
+                (useSheet ? (
+                  <TableSheet
+                    buttonContent={buttonContent}
+                    title={sheetTitle}
+                    description={sheetDescription}
+                    icon={sheetIcon}
+                  >
+                    {components?.CustomComponent ? (
+                      <components.CustomComponent />
+                    ) : (
+                      <div className="flex flex-col items-center text-gray-500">
+                        <FileWarning className="mb-2 h-6 w-6" />
+                        <p className="text-sm">
+                          Oops! No custom component found.
+                        </p>
+                        <p className="text-xs">
+                          Please provide a valid component.
+                        </p>
+                      </div>
+                    )}
+                  </TableSheet>
+                ) : (
+                  <Button onClick={() => router.push(linkTo ?? '')}>
+                    {buttonContent ?? 'Go to Create Page'}
+                  </Button>
+                ))}
             </>
           )}
         </div>

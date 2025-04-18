@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { DataTable } from '~/app/_components/tables/data-table'
-import VoucherTableSkeleton from '~/app/_components/skeletons/voucher-table-skeleton'
 import { FilePlus2 } from 'lucide-react'
 import { type UserColumn } from './schema'
 import { columns } from './column'
 import { getAllAuthUsersAction } from './actions'
+import TableSkeleton from '~/app/_components/skeletons/table-skeleton'
 
 export default function UserTable() {
   const [users, setUsers] = useState<UserColumn[]>([])
@@ -30,10 +30,9 @@ export default function UserTable() {
           name: user.user_metadata?.name ?? 'N/A',
           role:
             user.user_metadata?.role === 'ADMIN' ||
-            user.user_metadata?.role === 'CUSTOMER'
+            user.user_metadata?.role === 'CLIENT'
               ? user.user_metadata.role
-              : 'CUSTOMER',
-          referralCode: user.user_metadata?.referralCode ?? undefined,
+              : 'CLIENT',
           lastSignIn: user.last_sign_in_at ?? undefined,
           createdAt: user.created_at
             ? new Date(user.created_at).toLocaleDateString()
@@ -53,7 +52,7 @@ export default function UserTable() {
   }, [])
 
   if (loading) {
-    return <VoucherTableSkeleton />
+    return <TableSkeleton />
   }
 
   if (error) {

@@ -9,6 +9,15 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ppljqjgqakumvwpujdxg.supabase.co',
+        pathname: '/**',
+      },
+    ],
+  },
 }
 
 export default config

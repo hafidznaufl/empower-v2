@@ -111,7 +111,7 @@ export default function Navbar() {
                       </Button>
                     ) : null}
                     <DarkModeToggle
-                      variants={'outline'}
+                      variants={'secondary'}
                       size="icon"
                       className="w-full"
                     />
@@ -137,11 +137,7 @@ export default function Navbar() {
               >
                 Register
               </Button>
-              <DarkModeToggle
-                variants={'outline'}
-                size="icon"
-                className="rounded-full"
-              />
+              <DarkModeToggle size="icon" className="rounded-full" />
             </>
           )}
         </div>
@@ -203,17 +199,13 @@ export default function Navbar() {
                     Dashboard
                   </Button>
                 ) : null}
-                <DarkModeToggle
-                  variants={'outline'}
-                  size="icon"
-                  className="w-full"
-                />
+                <DarkModeToggle size="icon" className="w-full" />
                 <Separator />
                 <SignOut />
               </>
             ) : (
               <>
-                <DarkModeToggle variants={'outline'} />
+                <DarkModeToggle />
                 <Separator />
                 <Button
                   variant={'default'}

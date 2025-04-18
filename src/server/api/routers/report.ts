@@ -62,6 +62,7 @@ export const reportRouter = createTRPCRouter({
           id: true,
           name: true,
           email: true,
+          dayOfBirth: true,
           gender: true,
           studyProgram: true,
           semester: true,

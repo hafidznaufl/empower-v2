@@ -25,5 +25,45 @@ export async function getAllAuthUsersAction() {
     }
   }
 
-  return { success: true, users: users }
+  return { success: true, users }
+}
+
+export async function getUserByIdAction(userId: string) {
+  const { data: user, error } =
+    await supabaseAdmin.auth.admin.getUserById(userId)
+
+  if (error) {
+    console.error(`Error fetching user ${userId}:`, error)
+    return {
+      success: false,
+      message: `Failed to fetch user with ID ${userId}`,
+      error: error.message,
+    }
+  }
+
+  return { success: true, user }
+}
+
+export async function updateUserRoleAction(userId: string, newRole: string) {
+  const { data: user, error } = await supabaseAdmin.auth.admin.updateUserById(
+    userId,
+    {
+      user_metadata: { role: newRole },
+    },
+  )
+
+  if (error) {
+    console.error(`Error updating role for user ${userId}:`, error)
+    return {
+      success: false,
+      message: `Failed to update role for user with ID ${userId}`,
+      error: error.message,
+    }
+  }
+
+  return {
+    success: true,
+    message: `Successfully updated role to ${newRole}`,
+    user,
+  }
 }

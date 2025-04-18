@@ -2,7 +2,7 @@
 
 import { Rubik } from 'next/font/google'
 import { useRouter } from 'next/navigation'
-import { ArrowRightIcon, FilePlus2, Siren, TriangleAlert } from 'lucide-react'
+import { ArrowRightIcon, FilePlus2, ShieldAlert, Siren } from 'lucide-react'
 import { AnimatedShinyText } from '~/components/ui/animated-shiny-text'
 import { cn } from '~/utils/cn'
 import { Button } from '~/components/ui/button'
@@ -44,7 +44,7 @@ export default function Hero() {
           onClick={() => router.push('/report-incident')}
           className="gap-2"
         >
-          <TriangleAlert className="h-4 w-4" />
+          <ShieldAlert className="h-4 w-4" />
           Report Incident
         </Button>
         <Button

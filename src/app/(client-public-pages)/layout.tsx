@@ -5,6 +5,7 @@ import Navbar from '~/components/navbar'
 import { MotionLayout } from './_components/layout/motion-layout'
 import { cn } from '~/utils/cn'
 import { AnimatedGridPattern } from '../_components/ui/animated-grid-pattern'
+import FooterContent from '../_components/footer'
 
 export default function ClientPublicRootLayout({
   children,
@@ -14,7 +15,7 @@ export default function ClientPublicRootLayout({
   return (
     <div>
       <Navbar />
-      <main>
+      <main className="min-h-screen">
         <AnimatedGridPattern
           numSquares={2}
           maxOpacity={0.2}
@@ -37,6 +38,7 @@ export default function ClientPublicRootLayout({
         />
         <MotionLayout>{children}</MotionLayout>
       </main>
+      <FooterContent />
     </div>
   )
 }

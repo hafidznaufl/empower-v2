@@ -4,7 +4,7 @@ export default function FooterContent() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="relative flex w-full items-center justify-between overflow-hidden border-t text-sm text-muted-foreground">
+    <div className="relative flex w-full items-center justify-between overflow-hidden border-t text-sm text-muted-foreground mt-8">
       <div className="container z-10 mx-auto flex w-full items-center justify-between px-4 py-3">
         <div>
           © {currentYear} Empower Powered by{' '}

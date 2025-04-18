@@ -10,8 +10,8 @@
     --muted-foreground: 25 6.54% 19.49%;
     --popover: 60 4.76% 95.88%;
     --popover-foreground: 20 14.3% 4.1%;
-    --card: 60 4.76% 95.88%;
-    --card-foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9.41%;
     --border: 0 0% 83.14%;
     --input: 20 5.9% 90%;
     --primary: 205.31 59.26% 21.18%;
@@ -38,8 +38,8 @@
     --muted-foreground: 24 5.4% 63.9%;
     --popover: 20 14.3% 4.1%;
     --popover-foreground: 60 9.1% 97.8%;
-    --card: 20 14.3% 4.1%;
-    --card-foreground: 60 9.1% 97.8%;
+    --card: 0 0% 8.63%;
+    --card-foreground: 0 0% 100%;
     --border: 12 6.5% 15.1%;
     --input: 12 6.5% 15.1%;
     --primary: 60 9.1% 97.8%;
@@ -56,6 +56,56 @@
     --chart-3: 12 6.5% 15.1%;
     --chart-4: 12 6.5% 18.1%;
     --chart-5: 60 12.1% 97.8%;
+  }
+}
+
+@layer base {
+  :root {
+    --text-default: #150e00;
+    --text-gray: #6b7280;
+    --text-brown: #92400e;
+    --text-orange: #ea580c;
+    --text-yellow: #ca8a04;
+    --text-green: #16a34a;
+    --text-blue: #2563eb;
+    --text-purple: #9333ea;
+    --text-pink: #db2777;
+    --text-red: #dc2626;
+
+    --highlight-default: #ffffff;
+    --highlight-gray: #f3f4f6;
+    --highlight-brown: #fef3c7;
+    --highlight-orange: #ffedd5;
+    --highlight-yellow: #fef9c3;
+    --highlight-green: #dcfce7;
+    --highlight-blue: #dbeafe;
+    --highlight-purple: #f3e8ff;
+    --highlight-pink: #fce7f3;
+    --highlight-red: #fee2e2;
+  }
+
+  .dark {
+    --text-default: #f9f9f8;
+    --text-gray: #9ca3af;
+    --text-brown: #d97706;
+    --text-orange: #f97316;
+    --text-yellow: #eab308;
+    --text-green: #22c55e;
+    --text-blue: #3b82f6;
+    --text-purple: #a855f7;
+    --text-pink: #ec4899;
+    --text-red: #ef4444;
+
+    --highlight-default: #150e00;
+    --highlight-gray: #374151;
+    --highlight-brown: #78350f;
+    --highlight-orange: #9a3412;
+    --highlight-yellow: #854d0e;
+    --highlight-green: #166534;
+    --highlight-blue: #1e40af;
+    --highlight-purple: #6b21a8;
+    --highlight-pink: #9d174d;
+    --highlight-red: #991b1b;
   }
 }
 

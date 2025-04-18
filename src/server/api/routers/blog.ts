@@ -30,7 +30,7 @@ export const blogRouter = createTRPCRouter({
           })
           .trim(),
         category: z.enum(['BLOG', 'NEWS', 'PRESS_RELEASE']),
-        status: z.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']).optional(),
+        blogStatus: z.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']).optional(),
         thumbnail: z.string().optional(),
         authorId: z.string(),
       }),
@@ -46,7 +46,7 @@ export const blogRouter = createTRPCRouter({
             category: input.category,
             thumbnailURL: input.thumbnail ?? null,
             authorId: input.authorId ?? undefined,
-            status: input.status ?? 'DRAFT',
+            blogStatus: 'PENDING',
           },
         })
       } catch (error) {
@@ -64,7 +64,7 @@ export const blogRouter = createTRPCRouter({
         content: z.string().optional(),
         thumbnail: z.string().url().optional(),
         category: z.enum(['BLOG', 'NEWS', 'PRESS_RELEASE']).optional(),
-        status: z.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']).optional(),
+        blogStatus: z.enum(['PENDING', 'PUBLISHED', 'ARCHIVED']).optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -77,7 +77,7 @@ export const blogRouter = createTRPCRouter({
             content: input.content,
             category: input.category,
             thumbnailURL: input.thumbnail,
-            status: input.status,
+            blogStatus: input.blogStatus,
           },
         })
       } catch (error) {
@@ -97,13 +97,45 @@ export const blogRouter = createTRPCRouter({
           description: true,
           category: true,
           thumbnailURL: true,
-          status: true,
+          blogStatus: true,
           createdAt: true,
+          updatedAt: true,
           author: {
             select: {
               id: true,
               name: true,
               email: true,
+              avatarURL: true,
+            },
+          },
+        },
+      })
+    } catch (error) {
+      console.error('Failed to fetch blogs:', error)
+      throw new Error('Failed to fetch blogs. Please try again.')
+    }
+  }),
+
+  getAllPublished: publicProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.db.blog.findMany({
+        where: { deletedAt: null, blogStatus: 'PUBLISHED' },
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          category: true,
+          thumbnailURL: true,
+          blogStatus: true,
+          createdAt: true,
+          updatedAt: true,
+          author: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              avatarURL: true,
             },
           },
         },
@@ -122,7 +154,7 @@ export const blogRouter = createTRPCRouter({
           where: { id: input.id, deletedAt: null },
           include: {
             author: {
-              select: { id: true, name: true, email: true },
+              select: { id: true, name: true, email: true, avatarURL: true },
             },
           },
         })

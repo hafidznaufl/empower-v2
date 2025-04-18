@@ -39,7 +39,7 @@ export default function TableDeleteSelected<TData extends { id: string }>({
         console.error('deleteManyMutation is undefined.')
         alert('Delete operation is not available.')
       }
-      await utils.voucher.getAll.invalidate()
+      await utils.blog.getAll.invalidate()
       table.resetRowSelection()
     } catch (error) {
       console.error('Error deleting vouchers:', error)

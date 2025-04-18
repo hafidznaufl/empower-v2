@@ -15,15 +15,22 @@ import {
 import Image from 'next/image'
 import AvatarFallbackIcon from '~/public/image/avatar.jpg'
 import { useRouter } from 'next/navigation'
-import { EllipsisVertical, House, Ticket, User } from 'lucide-react'
+import {
+  CalendarClock,
+  CalendarDays,
+  EllipsisVertical,
+  FileText,
+  FileWarning,
+  House,
+  LayoutDashboard,
+  ShieldAlert,
+  User,
+  Users2,
+} from 'lucide-react'
 import SignOut from './logout-button'
 import { useClientUserSession } from '~/utils/hooks/useUserSession'
 
-import {
-  DashboardIcon,
-  DoubleArrowRightIcon,
-  FileTextIcon,
-} from '@radix-ui/react-icons'
+import { DashboardIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons'
 
 type NavigationMenu = {
   path: string
@@ -35,17 +42,27 @@ const menus: NavigationMenu[] = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    icon: <DashboardIcon />,
+    icon: <LayoutDashboard />,
   },
   {
-    path: '/dashboard/voucher',
-    name: 'Voucher',
-    icon: <Ticket />,
+    path: '/dashboard/report-incident',
+    name: 'Report Incident',
+    icon: <ShieldAlert />,
+  },
+  {
+    path: '/dashboard/blog',
+    name: 'Blog',
+    icon: <FileText />,
+  },
+  {
+    path: '/dashboard/event',
+    name: 'Event',
+    icon: <CalendarDays />,
   },
   {
     path: '/dashboard/user',
     name: 'User',
-    icon: <User />,
+    icon: <Users2 />,
   },
 ]
 

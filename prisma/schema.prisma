@@ -24,6 +24,11 @@ model User {
     blog      Blog[]
 }
 
+enum UserRole {
+    ADMIN
+    CLIENT
+}
+
 model ReportIncident {
     id                   String           @id @default(uuid())
     name                 String
@@ -40,6 +45,25 @@ model ReportIncident {
     createdAt            DateTime         @default(now())
     updatedAt            DateTime         @updatedAt
     deletedAt            DateTime?
+}
+
+enum StudyProgramKind {
+    INFORMATION_SYSTEMS
+    COMPUTER_ENGINEERING
+    DIGITAL_BUSINESS
+}
+
+enum ReportStatus {
+    PENDING
+    IN_PROCESS
+    PROVEN_LIGHTLY_SACTIONED
+    PROVEN_MODERATElYY_SACTIONED
+    PROVEN_SEVERELY_SACTIONED
+}
+
+enum GenderKind {
+    MALE
+    FEMALE
 }
 
 model Event {
@@ -66,14 +90,14 @@ model Blog {
     thumbnailURL String?
     authorId     String
     author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
-    status       BlogStatus   @default(DRAFT)
+    blogStatus   BlogStatus   @default(PENDING)
     createdAt    DateTime     @default(now())
     updatedAt    DateTime     @updatedAt
     deletedAt    DateTime?
 }
 
 enum BlogStatus {
-    DRAFT
+    PENDING
     PUBLISHED
     ARCHIVED
 }
@@ -82,28 +106,4 @@ enum BLogCategory {
     BLOG
     NEWS
     PRESS_RELEASE
-}
-
-enum GenderKind {
-    MALE
-    FEMALE
-}
-
-enum StudyProgramKind {
-    INFORMATION_SYSTEMS
-    COMPUTER_ENGINEERING
-    DIGITAL_BUSINESS
-}
-
-enum ReportStatus {
-    PENDING
-    IN_PROCESS
-    PROVEN_LIGHTLY_SACTIONED
-    PROVEN_MODERATElYY_SACTIONED
-    PROVEN_SEVERELY_SACTIONED
-}
-
-enum UserRole {
-    ADMIN
-    CLIENT
 }

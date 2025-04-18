@@ -54,6 +54,7 @@ export default function BlogForm() {
       content: '',
       category: undefined,
       thumbnail: '',
+      authorId: userId,
     },
   })
 

@@ -1,64 +1,28 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import axios from 'axios'
 import Image from 'next/image'
-import { Separator } from '@/components/ui/separator'
-import { Card, CardHeader } from '@/components/ui/card'
-import SingleBlogSkeletonLoader from '@/components/loading/single-blog-skeleton'
-
-interface Blog {
-  id: string
-  title: string
-  content: string
-  thumbnailURL?: string
-  author: {
-    name: string
-    email: string
-    photoURL?: string
-  }
-}
+import SingleBlogSkeletonLoader from '~/components/skeletons/single-blog-skeleton'
+import { Card, CardHeader } from '~/components/ui/card'
+import { Separator } from '~/components/ui/separator'
+import { api } from '~/trpc/react'
 
 const BlogPage = () => {
   const pathname = usePathname()
   const id = pathname.split('/').pop()
 
-  const [blog, setBlog] = useState<Blog | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const {
+    data: blog,
+    isLoading,
+    error,
+  } = api.blog.getById.useQuery(
+    { id: id! },
+    { enabled: !!id },
+  )
 
-  const fetchBlog = async (blogId: string) => {
-    try {
-      setLoading(true)
-      setError(null)
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL_SERVER}/api/blogs/${blogId}`,
-      )
-      setBlog(response.data.data)
-    } catch (err: any) {
-      console.error('Error fetching blog:', err)
-      setError('Failed to load blog content. Please try again later.')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    if (id) {
-      fetchBlog(id)
-    } else {
-      setError('Blog ID is missing.')
-      setLoading(false)
-    }
-  }, [id])
-
-  console.log(blog)
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="mt-20 md:mt-8">
-        {/* <SyncLoader color="#d2e755" speedMultiplier={1} /> */}
         <SingleBlogSkeletonLoader />
       </div>
     )
@@ -67,7 +31,7 @@ const BlogPage = () => {
   if (error) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <p>{error}</p>
+        <p>{error.message || 'Failed to load blog content.'}</p>
       </div>
     )
   }
@@ -84,15 +48,15 @@ const BlogPage = () => {
     <div className="container mx-auto mb-8 mt-[4.5rem] flex flex-col md:my-8">
       <div
         className="prose mb-8 max-w-none"
-        dangerouslySetInnerHTML={{ __html: blog.content }}
+        dangerouslySetInnerHTML={{ __html: (blog.content as string) || '' }}
       />
       <Separator />
       <p className="my-4 text-sm font-medium text-gray-600">Authored By</p>
       <Card>
         <CardHeader className="flex flex-row items-center gap-4">
-          {blog.author.photoURL ? (
+          {blog.author.avatarURL ? (
             <Image
-              src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}/${blog.author.photoURL}`}
+              src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}/${blog.author.avatarURL}`}
               alt={blog.author.name}
               width={40}
               height={40}

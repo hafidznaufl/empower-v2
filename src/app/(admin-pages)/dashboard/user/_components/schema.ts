@@ -4,9 +4,7 @@ export const userSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(3, 'Name must be at least 3 characters'),
   email: z.string().email('Invalid email address'),
-  referralCode: z.string().optional(),
-  role: z.enum(['ADMIN', 'CUSTOMER']),
-  createdAt: z.date(),
+  role: z.enum(['ADMIN', 'CLIENT']),
 })
 
 export const userSchemaColumn = z.object({
@@ -14,8 +12,7 @@ export const userSchemaColumn = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   email: z.string().email('Invalid email address'),
   emailVerified: z.string().optional(),
-  referralCode: z.string().optional(),
-  role: z.enum(['ADMIN', 'CUSTOMER']),
+  role: z.enum(['ADMIN', 'CLIENT']),
   createdAt: z.string(),
   lastSignIn: z.string().optional(),
 })
