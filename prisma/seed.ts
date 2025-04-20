@@ -99,6 +99,7 @@ async function main() {
         Date.now() + 7 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000,
       ), // 12 PM
       location: 'Location 1',
+      room: 'Room 1',
       capacity: '200',
     },
   })
@@ -115,6 +116,7 @@ async function main() {
         Date.now() + 14 * 24 * 60 * 60 * 1000 + 13 * 60 * 60 * 1000,
       ), // 1 PM
       location: 'Location 2',
+      room: 'Room 1',
       capacity: '200',
     },
   })
@@ -131,6 +133,7 @@ async function main() {
         Date.now() + 21 * 24 * 60 * 60 * 1000 + 11 * 60 * 60 * 1000,
       ), // 11 AM
       location: 'Location 3',
+      room: 'Room 1',
       capacity: '200',
     },
   })

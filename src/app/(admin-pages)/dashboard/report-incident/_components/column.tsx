@@ -11,7 +11,6 @@ import {
   BadgeMinus,
   CircleAlert,
   FilePen,
-  Binoculars,
   View,
 } from 'lucide-react'
 
@@ -205,7 +204,9 @@ export const columns: ColumnDef<ReportIncidentColumn>[] = [
                 onClick={() =>
                   router.push(`/dashboard/report-incident/${incident.id}`)
                 }
+                variant={'ghost'}
                 size={'sm'}
+                className="w-full"
               >
                 <View className="h-4 w-4" />
                 View Details
@@ -215,7 +216,7 @@ export const columns: ColumnDef<ReportIncidentColumn>[] = [
                 buttonContent="Update Status"
                 title="Update Role User"
                 description="Modify the role of the selected user."
-                buttonVariant="default"
+                buttonVariant="ghost"
                 buttonSize="sm"
                 icon={<FilePen className="h-4 w-4" />}
               >

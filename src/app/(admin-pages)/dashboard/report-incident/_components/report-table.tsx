@@ -25,23 +25,23 @@ export default function ReportIncidentTable() {
   }
 
   const formattedData: ReportIncidentColumn[] =
-    data?.map((blog) => ({
-      id: blog.id,
-      name: blog.name,
-      email: blog.email,
-      gender: blog.gender as 'MALE' | 'FEMALE',
-      studyProgram: blog.studyProgram as
+    data?.map((report) => ({
+      id: report.id,
+      name: report.name,
+      email: report.email,
+      gender: report.gender as 'MALE' | 'FEMALE',
+      studyProgram: report.studyProgram as
         | 'COMPUTER_ENGINEERING'
         | 'INFORMATION_SYSTEMS'
         | 'DIGITAL_BUSINESS',
-      semester: blog.semester,
-      contact: blog.contact,
-      willingToBeContacted: blog.willingToBeContacted,
-      reportStatus: blog.reportStatus,
-      createdAt: blog.createdAt,
-      fileURL: blog.fileURL,
-      dayOfBirth: blog.dayOfBirth,
-      incidentDescription: blog.incidentDescription,
+      semester: report.semester,
+      contact: report.contact,
+      willingToBeContacted: report.willingToBeContacted,
+      reportStatus: report.reportStatus,
+      createdAt: report.createdAt,
+      fileURL: report.fileURL,
+      dayOfBirth: report.dayOfBirth,
+      incidentDescription: report.incidentDescription,
     })) ?? []
 
   return (

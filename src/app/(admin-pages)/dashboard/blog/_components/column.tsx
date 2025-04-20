@@ -212,6 +212,7 @@ export const columns: ColumnDef<BlogColumn>[] = [
               <Button
                 onClick={() => router.push(`/blogs/${blog.id}`)}
                 size={'sm'}
+                variant={'ghost'}
               >
                 <View className="h-4 w-4" />
                 View Details
@@ -221,7 +222,7 @@ export const columns: ColumnDef<BlogColumn>[] = [
                 buttonContent="Update Blog"
                 title="Update Blog"
                 description="Modify the selected blog details."
-                buttonVariant="default"
+                buttonVariant="ghost"
                 buttonSize="sm"
                 icon={<FilePen className="h-4 w-4" />}
               >

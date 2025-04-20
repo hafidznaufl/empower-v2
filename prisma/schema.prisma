@@ -74,6 +74,7 @@ model Event {
     timeStart    DateTime
     timeEnd      DateTime
     location     String
+    room         String
     capacity     String
     thumbnailURL String?
     createdAt    DateTime  @default(now())

@@ -3,6 +3,8 @@
 import { useParams } from 'next/navigation'
 import { ReportIncidentDetail } from '../_components/report-incident-details'
 import { api } from '~/trpc/react'
+import EventDetailSkeleton from '~/app/_components/skeletons/event-detail-skeleton'
+import DetailNotFound from '~/app/_components/skeletons/detail-not-found'
 
 export default function ReportIncidentPage() {
   const params = useParams()
@@ -13,8 +15,8 @@ export default function ReportIncidentPage() {
     { enabled: !!id },
   )
 
-  if (isLoading) return <div>Loading...</div>
-  if (!incident) return <div>Data tidak ditemukan.</div>
+  if (isLoading) return <EventDetailSkeleton />
+  if (!incident) return <DetailNotFound description="Report Incident" />
 
   return <ReportIncidentDetail incident={incident} />
 }
