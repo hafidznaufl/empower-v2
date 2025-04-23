@@ -23,7 +23,7 @@ export function DataTableViewOptions<TData>({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="default">
+        <Button variant="outline" size="sm">
           <ListFilter />
         </Button>
       </DropdownMenuTrigger>

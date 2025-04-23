@@ -3,14 +3,15 @@
 import { DataTable } from '~/app/_components/tables/data-table'
 import { api } from '~/trpc/react'
 import { FilePlus2 } from 'lucide-react'
-import { Suspense } from 'react'
 import TableSkeleton from '~/app/_components/skeletons/table-skeleton'
 import { columns } from './column'
 import { ReportIncidentColumn } from './schema'
+import { useExportToExcel } from '~/utils/hooks/useExportToExcel'
 
 export default function ReportIncidentTable() {
   const { data, isLoading, isFetching, error } = api.report.getAll.useQuery()
   const deleteManyMutation = api.report.deleteMany.useMutation()
+  const { exportToExcel, exportToCSV } = useExportToExcel()
 
   if (isLoading || isFetching) {
     return <TableSkeleton />
@@ -19,7 +20,7 @@ export default function ReportIncidentTable() {
   if (error) {
     return (
       <p className="text-center text-red-500">
-        ❌ Failed to load vouchers: {error.message}
+        ❌ Failed to load reports: {error.message}
       </p>
     )
   }
@@ -44,23 +45,50 @@ export default function ReportIncidentTable() {
       incidentDescription: report.incidentDescription,
     })) ?? []
 
+  const formatExportData = (data: ReportIncidentColumn[]) => {
+    return data.map((item) => ({
+      Nama: item.name,
+      Email: item.email,
+      'Jenis Kelamin': item.gender === 'MALE' ? 'Laki-laki' : 'Perempuan',
+      'Program Studi': {
+        COMPUTER_ENGINEERING: 'Teknik Komputer',
+        INFORMATION_SYSTEMS: 'Sistem Informasi',
+        DIGITAL_BUSINESS: 'Bisnis Digital',
+      }[item.studyProgram],
+      Semester: item.semester,
+      Kontak: item.contact,
+      'Bersedia Dihubungi': item.willingToBeContacted ? 'Ya' : 'Tidak',
+      'Status Laporan': item.reportStatus,
+      'Tanggal Lahir': new Date(item.dayOfBirth).toLocaleDateString('id-ID'),
+      'Tanggal Laporan': new Date(item.createdAt).toLocaleDateString('id-ID'),
+      'Deskripsi Kejadian': item.incidentDescription,
+      'Link File': item.fileURL ?? '-',
+    }))
+  }
+
   return (
-    <Suspense>
-      <div className="mt-4 px-8">
-        <DataTable
-          columns={columns}
-          data={formattedData}
-          placeholderFilter="Search by Email"
-          columnFilterName="email"
-          buttonContent="Create Report Incident"
-          sheetTitle="Create a New Voucher"
-          sheetDescription="Fill in the form below to create a new voucher."
-          sheetIcon={<FilePlus2 className="h-4 w-4" />}
-          deleteManyMutation={deleteManyMutation}
-          useSheet={false}
-          linkTo="/report-incident"
-        />
-      </div>
-    </Suspense>
+    <div className="mt-4 px-8">
+      <DataTable
+        columns={columns}
+        data={formattedData}
+        placeholderFilter="Search by Email"
+        columnFilterName="email"
+        buttonContent="Create Report Incident"
+        sheetTitle="Create a New Voucher"
+        sheetDescription="Fill in the form below to create a new voucher."
+        sheetIcon={<FilePlus2 className="h-4 w-4" />}
+        deleteManyMutation={deleteManyMutation}
+        useSheet={false}
+        linkTo="/report-incident"
+        onExportExcel={() => {
+          const fileName = `report-incident-${new Date().toISOString().slice(0, 10)}.xlsx`
+          exportToExcel(formatExportData(formattedData), fileName)
+        }}
+        onExportCsv={() => {
+          const fileName = `report-incident-${new Date().toISOString().slice(0, 10)}.xlsx`
+          exportToCSV(formatExportData(formattedData), fileName)
+        }}
+      />
+    </div>
   )
 }

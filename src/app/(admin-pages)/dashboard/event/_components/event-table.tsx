@@ -8,6 +8,7 @@ import { DataTable } from '~/app/_components/tables/data-table'
 import TableSkeleton from '~/app/_components/skeletons/table-skeleton'
 import { columns } from './column'
 import { EventColumn } from './schema'
+import CreateEventForm from './create-event-form'
 
 export default function EventTable() {
   const { data, isLoading, isFetching, error } = api.event.getAll.useQuery()
@@ -41,20 +42,19 @@ export default function EventTable() {
     })) ?? []
 
   return (
-    <Suspense>
-      <div className="mt-4 px-8">
-        <DataTable
-          columns={columns}
-          data={formattedData}
-          placeholderFilter="Search by Title"
-          columnFilterName="title"
-          buttonContent="Create New Event"
-          sheetTitle="Create Event"
-          sheetDescription="Fill in the form below to create a new event."
-          sheetIcon={<FilePlus2 className="h-4 w-4" />}
-          deleteManyMutation={deleteManyMutation}
-        />
-      </div>
-    </Suspense>
+    <div className="mt-4 px-8">
+      <DataTable
+        columns={columns}
+        data={formattedData}
+        placeholderFilter="Search by Title"
+        columnFilterName="title"
+        buttonContent="Create New Event"
+        sheetTitle="Create Event"
+        sheetDescription="Fill in the form below to create a new event."
+        sheetIcon={<FilePlus2 className="h-4 w-4" />}
+        deleteManyMutation={deleteManyMutation}
+        components={{ createCustomComponent: CreateEventForm }}
+      />
+    </div>
   )
 }

@@ -180,10 +180,12 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
+                    captionLayout="dropdown-buttons"
                     selected={field.value}
                     onSelect={(date) => field.onChange(date ?? new Date())}
-                    fromYear={2020}
-                    toYear={2030}
+                    fromYear={1970}
+                    toYear={new Date().getFullYear()}
+                    defaultMonth={new Date()}
                     initialFocus
                   />
                 </PopoverContent>

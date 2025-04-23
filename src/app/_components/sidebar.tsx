@@ -16,16 +16,14 @@ import Image from 'next/image'
 import AvatarFallbackIcon from '~/public/image/avatar.jpg'
 import { useRouter } from 'next/navigation'
 import {
-  CalendarClock,
   CalendarDays,
   EllipsisVertical,
   FileText,
-  FileWarning,
   House,
   LayoutDashboard,
   ShieldAlert,
   User,
-  Users2,
+  Users,
 } from 'lucide-react'
 import SignOut from './logout-button'
 import { useClientUserSession } from '~/utils/hooks/useUserSession'
@@ -62,7 +60,7 @@ const menus: NavigationMenu[] = [
   {
     path: '/dashboard/user',
     name: 'User',
-    icon: <Users2 />,
+    icon: <Users />,
   },
 ]
 

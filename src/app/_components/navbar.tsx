@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import AvatarFallbackIcon from '~/../public/image/avatar.jpg'
 import Image from 'next/image'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
-import { LogIn, UserPen, UserRound } from 'lucide-react'
+import { LayoutDashboard, LogIn, UserPen, UserRound } from 'lucide-react'
 import SignOut from './logout-button'
 import { useClientSession } from '~/utils/hooks/useSession'
 import Link from 'next/link'
@@ -106,7 +106,7 @@ export default function Navbar() {
                         className="gap-2"
                         onClick={() => router.push('/dashboard')}
                       >
-                        <DashboardIcon className="h-4 w-4" />
+                        <LayoutDashboard className="h-4 w-4" />
                         Dashboard
                       </Button>
                     ) : null}

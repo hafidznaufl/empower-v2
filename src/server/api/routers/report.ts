@@ -72,6 +72,8 @@ export const reportRouter = createTRPCRouter({
           fileURL: true,
           reportStatus: true,
           createdAt: true,
+          deletedAt: true,
+          updatedAt: true,
         },
       })
     } catch (error) {

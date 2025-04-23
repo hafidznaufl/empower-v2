@@ -26,9 +26,15 @@ import { Input } from '../ui/input'
 import TableSheet from './table-sheet'
 import { type UseMutationResult } from '@tanstack/react-query'
 import TableDeleteSelected from './table-delete-selected'
-import { FileWarning } from 'lucide-react'
+import { Download, FilePlus2, FileWarning } from 'lucide-react'
 import { Button } from '../ui/button'
 import { useRouter } from 'next/navigation'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -50,8 +56,10 @@ interface DataTableProps<TData, TValue> {
   allowCreate?: boolean
   allowDelete?: boolean
   components?: {
-    CustomComponent?: React.FC
+    createCustomComponent?: React.FC
   }
+  onExportExcel?: () => void
+  onExportCsv?: () => void
 }
 
 export function DataTable<TData extends { id: string }, TValue>({
@@ -69,6 +77,8 @@ export function DataTable<TData extends { id: string }, TValue>({
   components,
   allowCreate = true,
   allowDelete = true,
+  onExportExcel,
+  onExportCsv,
 }: DataTableProps<TData, TValue>) {
   const router = useRouter()
   const [sorting, setSorting] = React.useState<SortingState>([])
@@ -130,11 +140,11 @@ export function DataTable<TData extends { id: string }, TValue>({
                     description={sheetDescription}
                     icon={sheetIcon}
                   >
-                    {components?.CustomComponent ? (
-                      <components.CustomComponent />
+                    {components?.createCustomComponent ? (
+                      <components.createCustomComponent />
                     ) : (
                       <div className="flex flex-col items-center text-gray-500">
-                        <FileWarning className="mb-2 h-6 w-6" />
+                        <FileWarning className="mb-2 h-4 w-4" />
                         <p className="text-sm">
                           Oops! No custom component found.
                         </p>
@@ -145,10 +155,38 @@ export function DataTable<TData extends { id: string }, TValue>({
                     )}
                   </TableSheet>
                 ) : (
-                  <Button onClick={() => router.push(linkTo ?? '')}>
+                  <Button onClick={() => router.push(linkTo ?? '')} size={'sm'}>
+                    <FilePlus2 className="h-4 w-4" />
                     {buttonContent ?? 'Go to Create Page'}
                   </Button>
                 ))}
+
+              {(onExportExcel || onExportCsv) && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="secondary"
+                      className="flex items-center"
+                      size={'sm'}
+                    >
+                      <Download className="h-4 w-4" />
+                      Export
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {onExportExcel && (
+                      <DropdownMenuItem onClick={onExportExcel}>
+                        Export as Excel
+                      </DropdownMenuItem>
+                    )}
+                    {onExportCsv && (
+                      <DropdownMenuItem onClick={onExportCsv}>
+                        Export as CSV
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
             </>
           )}
         </div>
