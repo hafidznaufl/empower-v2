@@ -76,7 +76,7 @@ export default function BlogForm() {
         description: data.description,
         content: data.content,
         category: data.category,
-        status: 'DRAFT',
+        blogStatus: 'DRAFT',
         thumbnail: thumbnailUrl || undefined,
         authorId: userId,
       })

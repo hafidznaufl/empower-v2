@@ -16,10 +16,6 @@ const navbarMenu: NavigationMenu[] = [
     path: '/blog',
     name: 'Blog',
   },
-  {
-    path: '/about-us',
-    name: 'About Us',
-  },
 ]
 
 const sidebarMenu: NavigationMenu[] = [

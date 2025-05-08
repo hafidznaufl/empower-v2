@@ -17,8 +17,8 @@ export default function ClientPublicRootLayout({
       <Navbar />
       <main className="min-h-screen">
         <AnimatedGridPattern
-          numSquares={2}
-          maxOpacity={0.2}
+          numSquares={5}
+          maxOpacity={0.1}
           duration={2}
           repeatDelay={5}
           className={cn(

@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="animate-blob absolute -top-10 left-1/4 h-10 w-48 rounded-full bg-primary opacity-30 blur-2xl" />
         <div className="animate-blob animation-delay-2000 absolute right-1/4 top-0 h-10 w-36 rounded-full bg-primary opacity-30 blur-2xl" />
-        <div className="animate-blob animation-delay-4000 absolute bottom-0 left-1/2 h-20 w-40 rounded-full bg-primary opacity-30 blur-2xl" />
+        <div className="animate-blob animation-delay-4000 left-1/6 absolute bottom-0 h-20 w-40 rounded-full bg-primary opacity-10 blur-2xl" />
       </div>
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <div
@@ -55,7 +55,7 @@ export default function Navbar() {
             Powered by Satgas PPKS STTNF
           </p>
         </div>
-        <div className="absolute left-1/2 hidden w-[21rem] -translate-x-1/2 transform items-center justify-between gap-1 rounded-full border border-border/80 bg-foreground/5 p-1 font-medium md:flex">
+        <div className="absolute left-1/2 hidden w-[14.5rem] -translate-x-1/2 transform items-center justify-between gap-1 rounded-full border bg-foreground/5 p-1 font-medium md:flex">
           {navbarMenu.map((item) => (
             <Link href={item.path} key={item.path}>
               <div
@@ -160,10 +160,10 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            transition={{ ease: 'backOut' }}
+            transition={{ ease: 'backInOut', duration: 0.5 }}
             className="border-b-1 container flex flex-col gap-4 p-4 md:hidden"
           >
-            {/* {MenuItem.map((item) => (
+            {navbarMenu.map((item) => (
               <Button
                 key={item.name}
                 variant={'ghost'}
@@ -175,7 +175,7 @@ export default function Navbar() {
               >
                 {item.name}
               </Button>
-            ))} */}
+            ))}
             <Separator />
             {session ? (
               <>

@@ -166,6 +166,41 @@ export const blogRouter = createTRPCRouter({
       }
     }),
 
+  getByAuthorId: publicProcedure
+    .input(z.object({ authorId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.db.blog.findMany({
+          where: {
+            authorId: input.authorId,
+            deletedAt: null,
+          },
+          orderBy: { createdAt: 'desc' },
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            category: true,
+            thumbnailURL: true,
+            blogStatus: true,
+            createdAt: true,
+            updatedAt: true,
+            author: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+                avatarURL: true,
+              },
+            },
+          },
+        })
+      } catch (error) {
+        console.error('Failed to fetch blogs by author:', error)
+        throw new Error('Failed to fetch blogs by author. Please try again.')
+      }
+    }),
+
   deleteMany: publicProcedure
     .input(z.object({ ids: z.array(z.string().uuid()) }))
     .mutation(async ({ ctx, input }) => {

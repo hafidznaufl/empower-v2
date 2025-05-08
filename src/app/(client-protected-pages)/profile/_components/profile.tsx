@@ -18,12 +18,11 @@ import UpdatePasswordForm from '~/app/auth/update-password/_components/update-pa
 import UpdateEmailForm from './update-email-form'
 import { useClientUserSession } from '~/utils/hooks/useUserSession'
 import { useEffect } from 'react'
-import ReferralCard from './referral-card'
+import { AuthorBlogList } from './author-blog-list'
 
 export default function Profile() {
   const session = useClientUserSession()
   const router = useRouter()
-  const referralCode = session?.user_metadata?.referralCode as string
 
   useEffect(() => {
     console.log(session)
@@ -60,7 +59,6 @@ export default function Profile() {
           <SquarePen className="h-4 w-4" />
         </Button>
       </Card>
-      <ReferralCard referralCode={referralCode} />
       <Card>
         <CardHeader>
           <CardTitle>Security</CardTitle>
@@ -85,14 +83,20 @@ export default function Profile() {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>History</CardTitle>
-          <CardDescription>View your transaction history.</CardDescription>
+          <CardTitle>Your Blog List</CardTitle>
+          <CardDescription>
+            All blogs you've created will appear here.
+          </CardDescription>
           <Separator />
         </CardHeader>
         <CardContent>
-          <div className="text-center text-muted-foreground">
-            No transactions yet. Start making purchases to see your history.
-          </div>
+          {session?.id ? (
+            <AuthorBlogList authorId={session.id} />
+          ) : (
+            <div className="text-center text-muted-foreground">
+              Unable to load blog list. Please re-login.
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

@@ -6,6 +6,7 @@ import { TRPCReactProvider } from '~/trpc/react'
 import { Toaster } from './_components/ui/sonner'
 import { ThemeProvider } from './_components/theme-provider'
 import RouteProtectLayout from './(client-public-pages)/_components/layout/route-protect-layout'
+import { Suspense } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,17 +24,19 @@ export default function RootLayout({
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <TRPCReactProvider>
-          <RouteProtectLayout>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem={false}
-              disableTransitionOnChange
-            >
-              {children}
-              <Toaster />
-            </ThemeProvider>
-          </RouteProtectLayout>
+          <Suspense>
+            <RouteProtectLayout>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem={false}
+                disableTransitionOnChange
+              >
+                {children}
+                <Toaster />
+              </ThemeProvider>
+            </RouteProtectLayout>
+          </Suspense>
         </TRPCReactProvider>
       </body>
     </html>
