@@ -162,7 +162,6 @@ export default function CreateEventForm() {
                     fromYear={1970}
                     toYear={new Date().getFullYear()}
                     defaultMonth={new Date()}
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>

@@ -36,12 +36,13 @@ export default function AuthLayout({
           />
           <div className="absolute bottom-10 left-10 pr-14 text-white">
             <p className="text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-              quos temporibus quaerat reprehenderit quibusdam et veritatis rerum
-              quia velit ex voluptatibus adipisci enim accusantium quod saepe
-              est, maiores asperiores molestiae!
+              "Designed in alignment with the values of Satgas PPKS STT Terpadu
+              Nurul Fikri, this application serves as a secure and empathetic
+              space for survivors and witnesses to report incidents of sexual
+              violence, reflecting the institution’s commitment to a safe and
+              dignified campus environment."
             </p>
-            <Badge className="mt-6">- Lorem Ipsum</Badge>
+            <Badge className="mt-6">- Satgas PPKS STTNF</Badge>
           </div>
         </div>
         {children}

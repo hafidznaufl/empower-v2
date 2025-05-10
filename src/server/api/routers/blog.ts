@@ -8,7 +8,7 @@ export const blogRouter = createTRPCRouter({
         title: z
           .string()
           .min(5, { message: 'Title must be at least 5 characters long.' })
-          .max(100, { message: 'Title cannot be longer than 100 characters.' })
+          .max(255, { message: 'Title cannot be longer than 255 characters.' })
           .trim(),
         description: z
           .string()
@@ -22,9 +22,6 @@ export const blogRouter = createTRPCRouter({
         content: z
           .string()
           .min(50, { message: 'Content must be at least 50 characters long.' })
-          .max(99999, {
-            message: 'Content cannot be longer than 99999 characters.',
-          })
           .regex(/[^\s]/, {
             message: 'Content cannot be empty or just whitespace.',
           })

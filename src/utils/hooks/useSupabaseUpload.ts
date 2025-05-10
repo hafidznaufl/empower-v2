@@ -13,10 +13,6 @@ export function useSupabaseUpload() {
   const uploadFile = async (file: File, bucket: string, folder: string) => {
     setUploading(true)
 
-    console.log('Uploading file:', file.name)
-    console.log('Bucket', bucket)
-    console.log('folder', folder)
-
     try {
       const fileExt = file.name.split('.').pop() || 'bin'
       const fileName = `${uuidv4()}.${fileExt}`

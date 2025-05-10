@@ -215,12 +215,12 @@ export const columns: ColumnDef<BlogColumn>[] = [
                 variant={'ghost'}
               >
                 <View className="h-4 w-4" />
-                View Details
+                View Blog
               </Button>
               <TableSheet
                 button
                 buttonContent="Update Blog"
-                title="Update Blog"
+                title="Update Status Blog"
                 description="Modify the selected blog details."
                 buttonVariant="ghost"
                 buttonSize="sm"

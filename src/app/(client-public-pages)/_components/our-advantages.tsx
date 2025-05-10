@@ -11,27 +11,27 @@ import { ShieldCheck, MessageCircleHeart, Clock, EyeOff } from 'lucide-react'
 export default function OurAdvantages() {
   const benefits = [
     {
-      title: 'Perlindungan Korban',
+      title: 'Victim Protection',
       description:
-        'Empower memastikan kerahasiaan dan keamanan data pelapor melalui sistem terenkripsi.',
+        'Empower ensures confidentiality and data security through an encrypted system.',
       icon: <ShieldCheck className="text-green-600" size={20} />,
     },
     {
-      title: 'Pelaporan Mudah & Cepat',
+      title: 'Easy & Fast Reporting',
       description:
-        'Laporkan kejadian kekerasan secara cepat melalui antarmuka yang ramah pengguna.',
+        'Report incidents of violence quickly through a user-friendly interface.',
       icon: <MessageCircleHeart className="text-blue-600" size={20} />,
     },
     {
-      title: 'Pendampingan 24/7',
+      title: '24/7 Support',
       description:
-        'Tim pendamping tersedia sepanjang waktu untuk memberikan dukungan psikologis dan hukum.',
+        'Our support team is available around the clock to provide psychological and legal assistance.',
       icon: <Clock className="text-purple-600" size={20} />,
     },
     {
-      title: 'Privasi Terjamin',
+      title: 'Guaranteed Privacy',
       description:
-        'Identitas pelapor dijaga sepenuhnya. Empower berkomitmen melindungi hak privasi Anda.',
+        'Reporter identity is fully protected. Empower is committed to safeguarding your privacy rights.',
       icon: <EyeOff className="text-pink-600" size={20} />,
     },
   ]

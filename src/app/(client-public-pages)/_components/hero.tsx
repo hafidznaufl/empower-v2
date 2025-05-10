@@ -28,7 +28,7 @@ export default function Hero() {
           }
         >
           <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-            <span>✨ Empower Beta v1.0</span>
+            <span>✨ Empower Beta Test v1.0</span>
             <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
           </AnimatedShinyText>
         </div>
@@ -64,7 +64,7 @@ export default function Hero() {
             className="gap-2"
           >
             <FilePlus2 className="h-4 w-4" />
-            Make a New Blog
+            Create Blog
           </Button>
         </div>
       </div>

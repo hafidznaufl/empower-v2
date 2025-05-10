@@ -1,6 +1,5 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import {
   Card,
@@ -9,6 +8,7 @@ import {
   CardTitle,
 } from '~/components/ui/card'
 import sttnfImage from '~/public/image/sttnf.jpg'
+import logoSatgasSTTNF from '~/public/image/logo-satgas-sttnf.jpg'
 
 export default function AboutUs() {
   return (
@@ -23,68 +23,76 @@ export default function AboutUs() {
             className="object-cover object-center transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
         </div>
-        <CardHeader className="space-y-5 pt-0 md:pl-0 md:pt-6">
+        <CardHeader className="space-y-4 pt-0 md:pl-0 md:pt-6">
+          <div className="flex items-center justify-center">
+            <Image
+              src={logoSatgasSTTNF}
+              alt="Satgas PPKS STTNF Logo"
+              width={100}
+              height={100}
+              className="rounded-full border"
+            />
+          </div>
           <div>
-            <CardTitle className="text-2xl font-bold md:text-xl">
-              Tentang Satgas PPKS STT Terpadu Nurul Fikri
+            <CardTitle className="text-2xl font-semibold md:text-xl">
+              About Satgas PPKS STT Terpadu Nurul Fikri
             </CardTitle>
             <CardDescription className="mt-2 text-justify">
-              Satuan Tugas Pencegahan dan Penanganan Kekerasan Seksual (Satgas
-              PPKS) dibentuk sebagai bentuk komitmen institusi dalam menciptakan
-              lingkungan kampus yang aman, inklusif, dan bebas dari kekerasan
-              seksual. Berdasarkan Permendikbudristek No. 30 Tahun 2021, Satgas
-              ini menjadi garda terdepan dalam pencegahan dan penanganan kasus
-              di lingkungan STT Terpadu Nurul Fikri.
+              The Sexual Violence Prevention and Handling Task Force (Satgas
+              PPKS) was established as a form of institutional commitment to
+              creating a safe, inclusive, and sexual violence-free campus
+              environment. Based on the Ministry of Education Regulation No. 30
+              of 2021, this task force serves as the front line in preventing
+              and handling cases within STT Terpadu Nurul Fikri.
             </CardDescription>
             <CardDescription className="mt-2 text-justify">
-              Tugas utama Satgas PPKS meliputi edukasi dan sosialisasi, menerima
-              dan menindaklanjuti laporan, memberikan pendampingan, serta
-              menyusun rekomendasi kebijakan kepada institusi.
+              The main duties of Satgas PPKS include education and outreach,
+              receiving and following up on reports, providing assistance, and
+              formulating policy recommendations for the institution.
             </CardDescription>
           </div>
           <div>
             <CardTitle className="text-xl font-semibold">
-              Visi & Misi Satgas PPKS STTNF
+              Vision & Mission of Satgas PPKS STT Terpadu Nurul Fikri
             </CardTitle>
             <CardDescription className="mt-2 text-justify">
-              <strong>Visi:</strong> Mewujudkan lingkungan kampus yang aman,
-              bermartabat, dan bebas dari segala bentuk kekerasan seksual.
+              <strong>Vision:</strong> To create a safe, dignified, and
+              violence-free campus environment.
             </CardDescription>
-            <CardDescription className="mtext-justify">
-              <strong>Misi:</strong>
+            <CardDescription className="text-justify">
+              <strong>Mission:</strong>
               <ul className="list-disc pl-6">
                 <li>
-                  Meningkatkan kesadaran dan pemahaman civitas akademika tentang
-                  kekerasan seksual.
+                  Raise awareness and understanding among the academic community
+                  about sexual violence.
                 </li>
                 <li>
-                  Memberikan layanan penanganan yang cepat, tepat, dan berpihak
-                  pada korban.
+                  Provide prompt, appropriate, and victim-centered handling
+                  services.
                 </li>
+                <li>Advocate for fair campus policies that protect victims.</li>
                 <li>
-                  Mendorong kebijakan kampus yang adil dan melindungi korban.
-                </li>
-                <li>
-                  Menjalin kerja sama dengan pihak internal dan eksternal untuk
-                  pencegahan kekerasan seksual.
+                  Establish collaboration with internal and external parties for
+                  sexual violence prevention.
                 </li>
               </ul>
             </CardDescription>
           </div>
           <div>
             <CardTitle className="text-xl font-semibold">
-              Struktur Umum Keanggotaan Satgas
+              General Membership Structure
             </CardTitle>
             <CardDescription className="mt-2 text-justify">
-              Satgas PPKS STTNF terdiri dari perwakilan dosen, tenaga
-              kependidikan, dan mahasiswa. Mereka dipilih melalui seleksi yang
-              transparan dan dilatih secara khusus untuk menangani kasus
-              kekerasan seksual secara profesional, rahasia, dan empatik.
+              Satgas PPKS STTNF consists of representatives from lecturers,
+              educational staff, and students. They are selected through a
+              transparent process and are specially trained to handle cases of
+              sexual violence professionally, confidentially, and
+              empathetically.
             </CardDescription>
           </div>
           <div>
             <CardTitle className="text-xl font-semibold">
-              Kontak Satgas
+              Satgas Contact
             </CardTitle>
             <CardDescription className="mt-2">
               <p>
@@ -103,8 +111,8 @@ export default function AboutUs() {
                 </a>
               </p>
               <p>
-                Alamat: Kampus STT Terpadu Nurul Fikri, Jl. Lenteng Agung,
-                Jakarta Selatan
+                Address: STT Terpadu Nurul Fikri Campus, Jl. Lenteng Agung,
+                South Jakarta
               </p>
             </CardDescription>
           </div>
