@@ -59,7 +59,7 @@ export function EventDetail({ redirectUrl, event }: EventDetailProps) {
   }
 
   return (
-    <div className="container mx-auto mt-20 space-y-4">
+    <div className="container mx-auto mt-20 space-y-4 px-4">
       <Card className="shadow-none">
         <CardHeader className="border-b pb-4 pt-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

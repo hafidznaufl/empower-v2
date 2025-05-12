@@ -17,6 +17,7 @@ import {
 import { Button } from '~/components/ui/button'
 import TableSheet from '~/components/tables/table-sheet'
 import UpdateUserForm from './update-user-form'
+import { UserActions } from './user-actions'
 
 export const columns: ColumnDef<UserColumn>[] = [
   {
@@ -101,31 +102,7 @@ export const columns: ColumnDef<UserColumn>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const user = row.original
-      const id = user.id
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <TableSheet
-              button={true}
-              buttonContent="Update Role User"
-              title="Update Role User"
-              description="Modify the role of the selected user."
-              buttonVariant="default"
-              buttonSize="sm"
-              icon={<FilePen className="h-4 w-4" />}
-            >
-              <UpdateUserForm id={id ?? ''} />
-            </TableSheet>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
+      return <UserActions user={user} />
     },
   },
 ]

@@ -3,7 +3,7 @@ import { Skeleton } from '~/components/ui/skeleton'
 
 export default function BlogSkeletonLoader() {
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto mt-10 px-4">
       <div className="mb-4">
         <Skeleton className="mb-4 h-8 w-32 border" />
 

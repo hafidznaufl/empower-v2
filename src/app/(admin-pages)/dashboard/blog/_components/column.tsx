@@ -33,6 +33,7 @@ import { Badge } from '~/components/ui/badge'
 import { DataTableCategoryColumnHeader } from '~/components/tables/data-table-category-header'
 import { DataTableStatusColumnHeader } from '~/components/tables/data-table-status-header'
 import { useRouter } from 'next/navigation'
+import { BlogActions } from './blog-actions'
 
 export const columns: ColumnDef<BlogColumn>[] = [
   {
@@ -196,42 +197,8 @@ export const columns: ColumnDef<BlogColumn>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const router = useRouter()
       const blog = row.original
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <div className="space-y-1">
-              <Button
-                onClick={() => router.push(`/blogs/${blog.id}`)}
-                size={'sm'}
-                variant={'ghost'}
-              >
-                <View className="h-4 w-4" />
-                View Blog
-              </Button>
-              <TableSheet
-                button
-                buttonContent="Update Blog"
-                title="Update Status Blog"
-                description="Modify the selected blog details."
-                buttonVariant="ghost"
-                buttonSize="sm"
-                icon={<FilePen className="h-4 w-4" />}
-              >
-                <UpdateBlogForm id={blog.id ?? ''} />
-              </TableSheet>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
+      return <BlogActions blog={blog} />
     },
   },
 ]

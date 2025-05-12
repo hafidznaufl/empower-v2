@@ -26,7 +26,7 @@ export default function EventList() {
 
   if (isLoading) {
     return (
-      <div className="mt-20 gap-1">
+      <div className="mt-20 px-4">
         <EventSkeletonLoader />
         <EventSkeletonLoader />
         <EventSkeletonLoader />
@@ -117,14 +117,14 @@ export default function EventList() {
   }
 
   return (
-    <div className="container mx-auto mt-20 space-y-12">
+    <div className="container mx-auto mt-20 space-y-12 px-4">
       {statusOrder.map((status) => {
         const eventList = groupedEvents[status]
         if (!eventList || eventList.length === 0) return null
 
         return (
           <div key={status} className="mt-0">
-            <div className="mb-6 flex items-center gap-3">
+            <div className="mb-2 flex items-center gap-3">
               <h2 className="text-2xl font-bold capitalize text-gray-800 dark:text-white">
                 {statusLabels[status as keyof typeof statusLabels]}
               </h2>
@@ -162,14 +162,14 @@ export default function EventList() {
                 return (
                   <SwiperSlide key={event.id}>
                     <Link href={`/event/${event.id}`}>
-                      <Card className="group h-full overflow-hidden border bg-card transition-all duration-300 hover:translate-y-[-2px] hover:shadow-xl">
+                      <Card className="group h-full overflow-hidden border bg-card shadow-none transition-all duration-300">
                         <div className="relative h-48 w-full overflow-hidden">
                           {event.thumbnailURL ? (
                             <Image
                               fill
                               src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${event.thumbnailURL}`}
                               alt={event.title}
-                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
                           ) : (
                             <div className="flex h-full w-full items-center justify-center bg-accent/80">

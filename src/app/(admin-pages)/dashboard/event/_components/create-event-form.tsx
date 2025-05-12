@@ -153,7 +153,7 @@ export default function CreateEventForm() {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="z-50 w-auto p-0" align="start" disablePortal={true}>
+                <PopoverContent className="z-50 w-auto p-0" align="start">
                   <Calendar
                     mode="single"
                     captionLayout="dropdown-buttons"

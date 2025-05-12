@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useEffect, useState, useRef } from 'react'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { type z } from 'zod'
 import { format } from 'date-fns'
@@ -74,18 +74,26 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
     },
   })
 
+  const isFormReady = useRef(false) // Flag to prevent resetting the form repeatedly
+
   useEffect(() => {
-    if (eventData) {
+    if (eventData && !isFormReady.current) {
       form.reset({
         ...eventData,
         date: new Date(eventData.date),
         timeStart: new Date(eventData.timeStart),
         timeEnd: new Date(eventData.timeEnd),
-        thumbnailURL: eventData.thumbnailURL ?? undefined,
+        thumbnailURL: eventData.thumbnailURL ?? '',
         deletedAt: eventData.deletedAt ?? undefined,
       })
+      isFormReady.current = true
     }
-  }, [eventData, form])
+  }, [eventData, form]) // only reset if eventData changes
+
+  const currentPreview = useWatch({
+    control: form.control,
+    name: 'thumbnailURL',
+  })
 
   const onSubmit = async (data: EventFormValues) => {
     try {
@@ -123,6 +131,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {/* Title */}
         <FormField
           control={form.control}
           name="title"
@@ -136,6 +145,8 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             </FormItem>
           )}
         />
+
+        {/* Description */}
         <FormField
           control={form.control}
           name="description"
@@ -150,6 +161,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
+        {/* Date */}
         <FormField
           control={form.control}
           name="date"
@@ -177,7 +189,11 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
+                <PopoverContent
+                  className="w-auto p-0"
+                  align="start"
+                  aria-hidden={false}
+                >
                   <Calendar
                     mode="single"
                     captionLayout="dropdown-buttons"
@@ -195,6 +211,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
+        {/* Time Start */}
         <FormField
           control={form.control}
           name="timeStart"
@@ -244,6 +261,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
+        {/* Location */}
         <FormField
           control={form.control}
           name="location"
@@ -258,6 +276,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
+        {/* Room */}
         <FormField
           control={form.control}
           name="room"
@@ -272,6 +291,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
+        {/* Capacity */}
         <FormField
           control={form.control}
           name="capacity"
@@ -286,50 +306,47 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
+        {/* Thumbnail */}
         <FormField
           control={form.control}
           name="thumbnailURL"
-          render={({ field }) => {
-            const currentPreview = form.watch('thumbnailURL')
-
-            return (
-              <FormItem>
-                <FormLabel>Thumbnail</FormLabel>
-                <FormControl>
-                  <div className="space-y-2">
-                    {currentPreview && (
-                      <div className="w-48">
-                        <Image
-                          width={200}
-                          height={200}
-                          src={
-                            currentPreview.startsWith('http')
-                              ? currentPreview
-                              : process.env
-                                  .NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
-                                currentPreview
-                          }
-                          alt="Thumbnail Preview"
-                          className="rounded-md border object-cover"
-                        />
-                      </div>
-                    )}
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0]
-                        if (file) {
-                          setThumbnailFile(file)
+          render={() => (
+            <FormItem>
+              <FormLabel>Thumbnail</FormLabel>
+              <FormControl>
+                <div className="space-y-2">
+                  {currentPreview && (
+                    <div className="w-48">
+                      <Image
+                        width={200}
+                        height={200}
+                        src={
+                          currentPreview.startsWith('http')
+                            ? currentPreview
+                            : process.env
+                                .NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
+                              currentPreview
                         }
-                      }}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )
-          }}
+                        alt="Thumbnail Preview"
+                        className="rounded-md border object-cover"
+                      />
+                    </div>
+                  )}
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0]
+                      if (file) {
+                        setThumbnailFile(file)
+                      }
+                    }}
+                  />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
 
         <Button

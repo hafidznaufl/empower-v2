@@ -17,8 +17,8 @@ export default function Hero() {
   const router = useRouter()
 
   return (
-    <div className="container mx-auto my-20 min-h-[47rem]">
-      <div className="grid place-items-center gap-10 text-center md:gap-4 md:pt-24">
+    <div className="container mx-auto my-20 min-h-[47rem] px-4 md:px-0">
+      <div className="grid place-items-center gap-4 text-center md:gap-4 md:pt-24">
         <div
           className={cn(
             'group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800',

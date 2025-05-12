@@ -28,6 +28,7 @@ import {
   DialogTrigger,
 } from '~/components/ui/dialog'
 import Image from 'next/image'
+import { EventActions } from './event-actions'
 
 export const columns: ColumnDef<EventColumn>[] = [
   {
@@ -199,44 +200,8 @@ export const columns: ColumnDef<EventColumn>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const router = useRouter()
       const event = row.original
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <div className="space-y-1">
-              <Button
-                onClick={() => router.push(`/dashboard/event/${event.id}`)}
-                size="sm"
-                variant={'ghost'}
-                className="w-full"
-              >
-                <View className="h-4 w-4" />
-                View Details
-              </Button>
-              <TableSheet
-                button={true}
-                buttonContent="Update Event"
-                title="Update Event"
-                description="Modify the selected event."
-                buttonVariant="ghost"
-                buttonSize="sm"
-                icon={<FilePen className="h-4 w-4" />}
-              >
-                <UpdateEventForm id={event.id} />
-              </TableSheet>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
+      return <EventActions event={event} />
     },
   },
 ]

@@ -31,6 +31,7 @@ import { DataTableBooleanColumnHeader } from '~/app/_components/tables/data-tabl
 import { useRouter } from 'next/navigation'
 import TableSheet from '~/app/_components/tables/table-sheet'
 import UpdateIncidentStatusForm from './update-status-report'
+import { ReportActions } from './report-actions'
 
 export const columns: ColumnDef<ReportIncidentColumn>[] = [
   {
@@ -186,46 +187,8 @@ export const columns: ColumnDef<ReportIncidentColumn>[] = [
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {
-      const router = useRouter()
-      const incident = row.original
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <div className="space-y-1">
-              <Button
-                onClick={() =>
-                  router.push(`/dashboard/report-incident/${incident.id}`)
-                }
-                variant={'ghost'}
-                size={'sm'}
-                className="w-full"
-              >
-                <View className="h-4 w-4" />
-                View Details
-              </Button>
-              <TableSheet
-                button={true}
-                buttonContent="Update Status"
-                title="Update Role User"
-                description="Modify the role of the selected user."
-                buttonVariant="ghost"
-                buttonSize="sm"
-                icon={<FilePen className="h-4 w-4" />}
-              >
-                <UpdateIncidentStatusForm id={incident.id ?? ''} />
-              </TableSheet>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
+      const report = row.original
+      return <ReportActions report={report} />
     },
   },
 ]

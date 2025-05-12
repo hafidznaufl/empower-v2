@@ -66,10 +66,10 @@ export default function BlogList() {
   )
 
   return (
-    <div className="container mx-auto mt-20 space-y-4">
+    <div className="container mx-auto mt-20 space-y-4 px-4">
       {Object.entries(groupedBlogs).map(([category, blogList]) => (
         <div key={category} className="mt-0">
-          <h2 className="mb-4 text-2xl font-bold capitalize text-gray-800 dark:text-white">
+          <h2 className="mb-2 text-2xl font-bold capitalize text-gray-800 dark:text-white">
             {category.replace('_', ' ').toLowerCase()}
           </h2>
 
@@ -88,14 +88,14 @@ export default function BlogList() {
             {blogList.map((blog) => (
               <SwiperSlide key={blog.id}>
                 <Link href={`/blogs/${blog.id}`}>
-                  <Card className="group h-full overflow-hidden border bg-card transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg">
+                  <Card className="group h-full overflow-hidden border bg-card shadow-none transition-all duration-300">
                     {blog.thumbnailURL && (
                       <div className="relative h-40 w-full overflow-hidden">
                         <Image
                           fill
                           src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${blog.thumbnailURL}`}
                           alt={blog.title}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                         <Badge

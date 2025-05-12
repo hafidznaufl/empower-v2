@@ -3,7 +3,7 @@ import { Skeleton } from '~/components/ui/skeleton'
 export default function EventDetailSkeleton() {
   return (
     <div className="container mx-auto mt-20">
-      <div className="space-y-4 p-6">
+      <div className="space-y-4 px-4">
         <Skeleton className="h-8 w-1/2" />
         <Skeleton className="h-4 w-1/3" />
         <Skeleton className="h-[400px] w-full rounded-md" />
