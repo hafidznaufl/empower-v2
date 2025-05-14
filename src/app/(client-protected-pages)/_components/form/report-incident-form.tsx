@@ -179,7 +179,7 @@ export default function ReportIncidentForm() {
   }
 
   return (
-    <Card className="mx-4 mt-16 mb-8 rounded-xl md:my-8">
+    <Card className="mx-4 mb-8 mt-16 rounded-xl md:my-8">
       <CardHeader>
         <CardTitle>Form Report Incident</CardTitle>
         <CardDescription>
@@ -581,8 +581,12 @@ export default function ReportIncidentForm() {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="w-full">
-                Submit
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {form.formState.isSubmitting ? 'Creating...' : 'Create Report'}
               </Button>
             </div>
           </form>

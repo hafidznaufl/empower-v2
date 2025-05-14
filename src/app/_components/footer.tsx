@@ -23,9 +23,6 @@ export default function FooterContent() {
           >
             Terms & Conditions
           </Link>
-          <Link href="/refund-policy" className="transition hover:text-white">
-            Refund Policy
-          </Link>
         </div>
       </div>
       <div className="absolute inset-0 -z-10 overflow-hidden">

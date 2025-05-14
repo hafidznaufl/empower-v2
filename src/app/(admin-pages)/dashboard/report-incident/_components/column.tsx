@@ -10,27 +10,14 @@ import {
   BadgeCheck,
   BadgeMinus,
   CircleAlert,
-  FilePen,
-  View,
 } from 'lucide-react'
 
 import { Checkbox } from '~/components/ui/checkbox'
-import { Button } from '~/components/ui/button'
 import { Badge } from '~/components/ui/badge'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '~/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
 import { ReportIncidentColumn } from './schema'
 import { DataTableStatusColumnHeader } from '~/components/tables/data-table-status-header'
 import { DataTableBooleanColumnHeader } from '~/app/_components/tables/data-table-boolean-header'
-import { useRouter } from 'next/navigation'
-import TableSheet from '~/app/_components/tables/table-sheet'
-import UpdateIncidentStatusForm from './update-status-report'
 import { ReportActions } from './report-actions'
 
 export const columns: ColumnDef<ReportIncidentColumn>[] = [

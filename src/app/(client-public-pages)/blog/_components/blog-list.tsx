@@ -118,9 +118,7 @@ export default function BlogList() {
                       </CardTitle>
                       <CardDescription className="mt-2 flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400">
                         <span className="inline-block h-1 w-1 rounded-full bg-gray-400 dark:bg-gray-500"></span>
-                        {format(blog.createdAt, 'eeee, dd MMMM yyyy', {
-                          locale: id,
-                        })}
+                        {format(blog.createdAt, 'eeee, dd MMMM yyyy')}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="px-5 pb-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">

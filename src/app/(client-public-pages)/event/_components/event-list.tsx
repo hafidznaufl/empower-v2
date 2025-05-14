@@ -26,7 +26,7 @@ export default function EventList() {
 
   if (isLoading) {
     return (
-      <div className="mt-20 px-4">
+      <div className="mt-20">
         <EventSkeletonLoader />
         <EventSkeletonLoader />
         <EventSkeletonLoader />
@@ -75,19 +75,19 @@ export default function EventList() {
     if (now < startDateTime) {
       return {
         status: 'upcoming',
-        label: 'Akan Datang',
+        label: 'Upcoming Event',
         color: 'bg-blue-500 text-white',
       }
     } else if (now > endDateTime) {
       return {
         status: 'past',
-        label: 'Sudah Berlalu',
+        label: 'Past Event',
         color: 'bg-gray-500 text-white',
       }
     } else {
       return {
         status: 'ongoing',
-        label: 'Sedang Berlangsung',
+        label: 'Ongoing',
         color: 'bg-green-500 text-white',
       }
     }
@@ -111,9 +111,9 @@ export default function EventList() {
 
   const statusOrder = ['ongoing', 'upcoming', 'past']
   const statusLabels = {
-    ongoing: 'Sedang Berlangsung',
-    upcoming: 'Akan Datang',
-    past: 'Sudah Berlalu',
+    ongoing: 'Ongoing',
+    upcoming: 'Upcoming Event',
+    past: 'Past Event',
   }
 
   return (
@@ -137,7 +137,7 @@ export default function EventList() {
                       : 'bg-gray-500 text-white'
                 }`}
               >
-                {eventList.length} acara
+                {eventList.length} events
               </Badge>
             </div>
 
@@ -176,7 +176,7 @@ export default function EventList() {
                               <CalendarIcon className="h-16 w-16 text-muted-foreground" />
                             </div>
                           )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                           <Badge
                             className={`absolute right-3 top-3 rounded-md px-2.5 py-1 text-xs font-medium shadow-md backdrop-blur-sm ${eventStatus.color}`}
                           >
@@ -190,13 +190,7 @@ export default function EventList() {
                           </CardTitle>
                           <CardDescription className="mt-2 flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400">
                             <CalendarIcon className="h-4 w-4" />
-                            {format(
-                              new Date(event.date),
-                              'eeee, dd MMMM yyyy',
-                              {
-                                locale: id,
-                              },
-                            )}
+                            {format(new Date(event.date), 'eeee, dd MMMM yyyy')}
                           </CardDescription>
                         </CardHeader>
 
@@ -218,7 +212,7 @@ export default function EventList() {
 
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Users className="h-4 w-4 text-primary" />
-                            <span>Kapasitas: {event.capacity} orang</span>
+                            <span>{event.capacity} seats</span>
                           </div>
                         </CardContent>
 

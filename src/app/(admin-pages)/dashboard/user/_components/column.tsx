@@ -3,20 +3,10 @@
 import { type Column, type ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
 import { UserColumn } from './schema'
-import { BadgeCheck, BadgeMinus, FilePen, MoreHorizontal } from 'lucide-react'
+import { BadgeCheck, BadgeMinus } from 'lucide-react'
 import { Badge } from '~/components/ui/badge'
 import { formatName, formatReadableDate } from '~/utils/hooks/useFormat'
 import { DataTableBooleanColumnHeader } from '~/components/tables/data-table-boolean-header'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '~/components/ui/dropdown-menu'
-import { Button } from '~/components/ui/button'
-import TableSheet from '~/components/tables/table-sheet'
-import UpdateUserForm from './update-user-form'
 import { UserActions } from './user-actions'
 
 export const columns: ColumnDef<UserColumn>[] = [
@@ -26,7 +16,7 @@ export const columns: ColumnDef<UserColumn>[] = [
       <DataTableColumnHeader column={column} className="px-2" title="Email" />
     ),
     cell: ({ row }) => (
-      <div className="px-2 font-bold">{row.getValue('email')}</div>
+      <div className="px-2 font-medium">{row.getValue('email')}</div>
     ),
   },
   {
@@ -63,9 +53,16 @@ export const columns: ColumnDef<UserColumn>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} className="px-2" title="Role" />
     ),
-    cell: ({ row }) => (
-      <Badge className="px-2">{formatName(row.getValue('role'))}</Badge>
-    ),
+    cell: ({ row }) => {
+      const role = row.getValue('role') as string
+      const variant = role === 'ADMIN' ? 'default' : 'secondary'
+
+      return (
+        <Badge variant={variant} className="px-2">
+          {formatName(role)}
+        </Badge>
+      )
+    },
   },
   {
     accessorKey: 'createdAt',

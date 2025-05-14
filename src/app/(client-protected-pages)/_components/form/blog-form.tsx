@@ -250,8 +250,12 @@ export default function BlogForm() {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="w-full">
-                Submit
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {form.formState.isSubmitting ? 'Creating...' : 'Create Blog'}
               </Button>
             </div>
           </form>

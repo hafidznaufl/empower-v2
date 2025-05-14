@@ -63,7 +63,7 @@ const useFormattedPorts = (data: PortData[] | null) => {
 
 const formatReadableDate = (dateStr?: string): string => {
   if (!dateStr) return 'N/A'
-  return format(new Date(dateStr), 'EEEE, dd MMMM yyyy', { locale: id })
+  return format(new Date(dateStr), 'EEEE, dd MMMM yyyy')
 }
 
 const formatToYYYYMMDD = (date?: Date | string | null): string =>
