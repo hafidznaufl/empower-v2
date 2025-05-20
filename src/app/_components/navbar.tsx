@@ -20,6 +20,7 @@ import SignOut from './logout-button'
 import { useClientSession } from '~/utils/hooks/useSession'
 import Link from 'next/link'
 import { navbarMenu } from '~/utils/constant/menu'
+import logoSatgas from '~/public/image/logo-satgas-sttnf.jpg'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -45,15 +46,27 @@ export default function Navbar() {
       </div>
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <div
-          className="flex cursor-pointer flex-col justify-center"
+          className="flex cursor-pointer items-center justify-center gap-1"
           onClick={() => router.push('/')}
         >
-          <p className="bg-gradient-to-tr from-primary bg-clip-text text-base font-extrabold tracking-wide text-transparent">
-            Empower
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Powered by Satgas PPKS STTNF
-          </p>
+          <div>
+            <Image
+              src={logoSatgas}
+              alt="Logo Satgas PPKS STTNF"
+              width={35}
+              height={35}
+              className="rounded-full"
+            />
+          </div>
+          <Separator orientation="vertical" className="mx-2 h-8" />
+          <div className='-translate-y-[0.10rem]'>
+            <p className="bg-gradient-to-tr from-primary bg-clip-text text-base font-extrabold tracking-wide text-transparent">
+              Empower
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Powered by Satgas PPKS STTNF
+            </p>
+          </div>
         </div>
         <div className="absolute left-1/2 hidden w-[14.5rem] -translate-x-1/2 transform items-center justify-between gap-1 rounded-full border bg-foreground/5 p-1 font-medium md:flex">
           {navbarMenu.map((item) => (
@@ -88,8 +101,8 @@ export default function Navbar() {
                     </AvatarFallback>
                   </Avatar>
                 </PopoverTrigger>
-                <PopoverContent className="mt-4 w-40" align="end">
-                  <div className="flex flex-col gap-4">
+                <PopoverContent className="mt-4 w-30 p-2 rounded-xl" align="end">
+                  <div className="flex flex-col gap-2">
                     <Button
                       variant={'secondary'}
                       size={'sm'}

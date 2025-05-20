@@ -58,7 +58,7 @@ export function EventActionsDropdown({
             size={'sm'}
           >
             <FilePen className="mr-2 h-4 w-4" />
-            Update Blog
+            Update Status Blog
           </Button>
         </div>
       </DropdownMenuContent>

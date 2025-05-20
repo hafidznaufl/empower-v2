@@ -10,6 +10,9 @@ import {
   BadgeCheck,
   BadgeMinus,
   CircleAlert,
+  CheckCircle,
+  XCircle,
+  MinusCircle,
 } from 'lucide-react'
 
 import { Checkbox } from '~/components/ui/checkbox'
@@ -115,20 +118,35 @@ export const columns: ColumnDef<ReportIncidentColumn>[] = [
           label: 'Diproses',
           color: 'blue',
         },
-        PROVEN_LIGHTLY_SACTIONED: {
+        PROVEN_LIGHTLY_SANCTIONED: {
           icon: <BadgeCheck className="h-4 w-4 text-green-500" />,
           label: 'Terbukti (Ringan)',
           color: 'green',
         },
-        PROVEN_MODERATElYY_SACTIONED: {
+        PROVEN_MODERATElYY_SANCTIONED: {
           icon: <BadgeCheck className="h-4 w-4 text-emerald-600" />,
           label: 'Terbukti (Sedang)',
           color: 'emerald',
         },
-        PROVEN_SEVERELY_SACTIONED: {
+        PROVEN_SEVERELY_SANCTIONED: {
           icon: <BadgeCheck className="h-4 w-4 text-red-500" />,
           label: 'Terbukti (Berat)',
           color: 'red',
+        },
+        SOLVED: {
+          icon: <CheckCircle className="h-4 w-4 text-green-600" />,
+          label: 'Selesai',
+          color: 'green',
+        },
+        NOT_PROVEN: {
+          icon: <XCircle className="h-4 w-4 text-gray-500" />,
+          label: 'Tidak Terbukti',
+          color: 'gray',
+        },
+        NOT_SANCTIONED: {
+          icon: <MinusCircle className="h-4 w-4 text-orange-500" />,
+          label: 'Tanpa Sanksi',
+          color: 'orange',
         },
       }
 

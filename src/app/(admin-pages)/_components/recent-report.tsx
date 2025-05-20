@@ -1,4 +1,5 @@
 import { type ReportIncident } from '@prisma/client'
+import { Badge } from '~/app/_components/ui/badge'
 
 export function RecentReports({ reports }: { reports: ReportIncident[] }) {
   return (
@@ -11,7 +12,7 @@ export function RecentReports({ reports }: { reports: ReportIncident[] }) {
               {report.email} • {new Date(report.createdAt).toLocaleDateString()}
             </p>
           </div>
-          <div className="ml-auto font-medium">{report.reportStatus}</div>
+          <Badge className="ml-auto font-medium">{report.reportStatus}</Badge>
         </div>
       ))}
     </div>

@@ -3,15 +3,19 @@ import { z } from 'zod'
 export const genderEnum = z.enum(['MALE', 'FEMALE'])
 export const studyProgramEnum = z.enum([
   'INFORMATION_SYSTEMS',
-  'COMPUTER_ENGINEERING',
+  'INFORMATICS_ENGINEERING',
   'DIGITAL_BUSINESS',
 ])
+
 export const reportStatusEnum = z.enum([
   'PENDING',
   'IN_PROCESS',
-  'PROVEN_LIGHTLY_SACTIONED',
-  'PROVEN_MODERATElYY_SACTIONED',
-  'PROVEN_SEVERELY_SACTIONED',
+  'PROVEN_LIGHTLY_SANCTIONED',
+  'PROVEN_MODERATElYY_SANCTIONED',
+  'PROVEN_SEVERELY_SANCTIONED',
+  'SOLVED',
+  'NOT_PROVEN',
+  'NOT_SANCTIONED',
 ])
 
 export const reportIncidentSchema = z.object({

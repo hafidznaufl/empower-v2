@@ -66,7 +66,7 @@ const BlogPage = () => {
   }
 
   return (
-    <div className="container mx-auto mb-8 mt-[4.5rem] flex flex-col md:my-8">
+    <div className="container mx-auto mb-4 mt-[4.5rem] flex flex-col md:mt-8 px-4">
       <div
         className="prose mb-8 max-w-none"
         dangerouslySetInnerHTML={{ __html: (blog.content as string) || '' }}

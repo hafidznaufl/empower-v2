@@ -338,8 +338,8 @@ export default function ReportIncidentForm() {
                         <SelectValue placeholder="Select Program" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="COMPUTER_ENGINEERING">
-                          Computer Engineering
+                        <SelectItem value="INFORMATICS_ENGINEERING">
+                          Informatics Engineering
                         </SelectItem>
                         <SelectItem value="INFORMATION_SYSTEMS">
                           Information Systems

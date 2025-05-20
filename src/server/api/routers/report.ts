@@ -10,7 +10,7 @@ export const reportRouter = createTRPCRouter({
         dateOfBirth: z.date().optional(),
         gender: z.enum(['MALE', 'FEMALE']),
         studyProgram: z.enum([
-          'COMPUTER_ENGINEERING',
+          'INFORMATICS_ENGINEERING',
           'INFORMATION_SYSTEMS',
           'DIGITAL_BUSINESS',
         ]),
@@ -23,9 +23,12 @@ export const reportRouter = createTRPCRouter({
           .enum([
             'PENDING',
             'IN_PROCESS',
-            'PROVEN_LIGHTLY_SACTIONED',
-            'PROVEN_MODERATElYY_SACTIONED',
-            'PROVEN_SEVERELY_SACTIONED',
+            'PROVEN_LIGHTLY_SANCTIONED',
+            'PROVEN_MODERATElYY_SANCTIONED',
+            'PROVEN_SEVERELY_SANCTIONED',
+            'SOLVED',
+            'NOT_PROVEN',
+            'NOT_SANCTIONED',
           ])
           .optional(),
       }),
@@ -106,9 +109,12 @@ export const reportRouter = createTRPCRouter({
           .enum([
             'PENDING',
             'IN_PROCESS',
-            'PROVEN_LIGHTLY_SACTIONED',
-            'PROVEN_MODERATElYY_SACTIONED',
-            'PROVEN_SEVERELY_SACTIONED',
+            'PROVEN_LIGHTLY_SANCTIONED',
+            'PROVEN_MODERATElYY_SANCTIONED',
+            'PROVEN_SEVERELY_SANCTIONED',
+            'SOLVED',
+            'NOT_PROVEN',
+            'NOT_SANCTIONED',
           ])
           .optional(),
         description: z.string().optional(),

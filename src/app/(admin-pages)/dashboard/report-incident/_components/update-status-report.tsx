@@ -29,9 +29,12 @@ const incidentStatusSchema = z.object({
   reportStatus: z.enum([
     'PENDING',
     'IN_PROCESS',
-    'PROVEN_LIGHTLY_SACTIONED',
-    'PROVEN_MODERATElYY_SACTIONED',
-    'PROVEN_SEVERELY_SACTIONED',
+    'PROVEN_LIGHTLY_SANCTIONED',
+    'PROVEN_MODERATElYY_SANCTIONED',
+    'PROVEN_SEVERELY_SANCTIONED',
+    'SOLVED',
+    'NOT_PROVEN',
+    'NOT_SANCTIONED',
   ]),
 })
 
@@ -107,16 +110,19 @@ export default function UpdateIncidentStatusForm({
                 </FormControl>
                 <SelectContent>
                   <SelectItem value="PENDING">Pending</SelectItem>
-                  <SelectItem value="IN_PROCESS">In Process</SelectItem>
-                  <SelectItem value="PROVEN_LIGHTLY_SACTIONED">
+                  <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
+                  <SelectItem value="PROVEN_LIGHTLY_SANCTIONED">
                     Proven - Lightly Sanctioned
                   </SelectItem>
-                  <SelectItem value="PROVEN_MODERATElYY_SACTIONED">
+                  <SelectItem value="PROVEN_MODERATELY_SANCTIONED">
                     Proven - Moderately Sanctioned
                   </SelectItem>
-                  <SelectItem value="PROVEN_SEVERELY_SACTIONED">
+                  <SelectItem value="PROVEN_SEVERELY_SANCTIONED">
                     Proven - Severely Sanctioned
                   </SelectItem>
+                  <SelectItem value="SOLVED">Solved</SelectItem>
+                  <SelectItem value="NOT_PROVEN">Not Proven</SelectItem>
+                  <SelectItem value="NOT_SANCTIONED">Not Sanctioned</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

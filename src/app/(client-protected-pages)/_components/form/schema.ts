@@ -10,7 +10,7 @@ export const reportSchema = z.object({
     required_error: 'Please select a gender',
   }),
   studyProgram: z.enum(
-    ['COMPUTER_ENGINEERING', 'INFORMATION_SYSTEMS', 'DIGITAL_BUSINESS'],
+    ['INFORMATICS_ENGINEERING', 'INFORMATION_SYSTEMS', 'DIGITAL_BUSINESS'],
     {
       required_error: 'Please select a study program',
     },
@@ -26,9 +26,12 @@ export const reportSchema = z.object({
     .enum([
       'PENDING',
       'IN_PROCESS',
-      'PROVEN_LIGHTLY_SACTIONED',
-      'PROVEN_MODERATElYY_SACTIONED',
-      'PROVEN_SEVERELY_SACTIONED',
+      'PROVEN_LIGHTLY_SANCTIONED',
+      'PROVEN_MODERATElYY_SANCTIONED',
+      'PROVEN_SEVERELY_SANCTIONED',
+      'SOLVED',
+      'NOT_PROVEN',
+      'NOT_SANCTIONED',
     ])
     .optional(),
 })

@@ -11,9 +11,9 @@ export default function DashboardLayout({
 }>) {
   return (
     <div className="flex min-h-screen w-full">
-      <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 p-4 text-white sm:hidden">
-        <TriangleAlert className="h-28 w-28 animate-pulse text-muted-foreground" />
-        <p className="text-center">
+      <div className="fixed inset-0 mx-2 flex flex-col items-center justify-center gap-6 p-4 text-muted-foreground sm:hidden">
+        <TriangleAlert className="h-28 w-28 animate-pulse text-primary" />
+        <p className="t text-center">
           The dashboard is not accessible on mobile view. Please use a larger
           screen for a better experience.
         </p>

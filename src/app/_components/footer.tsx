@@ -4,7 +4,7 @@ export default function FooterContent() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="relative flex w-full items-center justify-between overflow-hidden border-t text-sm text-muted-foreground mt-8">
+    <div className="relative mt-8 flex w-full items-center justify-between overflow-hidden border-t text-sm text-muted-foreground">
       <div className="container z-10 mx-auto flex w-full items-center justify-between px-4 py-3">
         <div>
           © {currentYear} Empower Powered by{' '}
@@ -14,15 +14,17 @@ export default function FooterContent() {
           . All Rights Reserved.
         </div>
         <div className="flex gap-4">
-          <Link href="/privacy-policy" className="transition hover:text-white">
-            Privacy Policy
-          </Link>
-          <Link
-            href="/terms-conditions"
-            className="transition hover:text-white"
-          >
-            Terms & Conditions
-          </Link>
+          <span>
+            Developed by{' '}
+            <Link
+              href="https://github.com/hafidznaufl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white"
+            >
+              @hafidznaufl
+            </Link>
+          </span>
         </div>
       </div>
       <div className="absolute inset-0 -z-10 overflow-hidden">

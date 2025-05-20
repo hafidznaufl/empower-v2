@@ -75,11 +75,11 @@ export default function UpdateBlogStatusForm({
 
   const updateMutation = api.blog.update.useMutation({
     onSuccess() {
-      toast.success('Incident status updated successfully.')
+      toast.success('Blog status updated successfully.')
       utils.blog.getAll.invalidate()
     },
     onError() {
-      toast.error('Failed to update incident status.')
+      toast.error('Failed to update blog status.')
     },
   })
 

@@ -7,19 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from '~/app/_components/ui/card'
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '~/app/_components/ui/tabs'
 import { api } from '~/trpc/react'
-import { Overview } from './overview'
 import { type ReportIncident } from '@prisma/client'
 import { Skeleton } from '~/app/_components/ui/skeleton'
 import { Alert, AlertDescription, AlertTitle } from '~/app/_components/ui/alert'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 import { RecentReports } from './recent-report'
+import Overview from './overview'
 
 interface ChartData {
   name: string
@@ -50,7 +44,16 @@ export default function DashboardPage() {
 
   const error = errorReports || errorBlogs || errorEvents || errorUsers
 
-  const defaultStatuses = ['PENDING', 'IN_PROGRESS', 'RESOLVED', 'REJECTED']
+  const defaultStatuses = [
+    'PENDING',
+    'IN_PROCESS',
+    'PROVEN_LIGHTLY_SANCTIONED',
+    'PROVEN_MODERATElYY_SANCTIONED',
+    'PROVEN_SEVERELY_SANCTIONED',
+    'SOLVED',
+    'NOT_PROVEN',
+    'NOT_SANCTIONED',
+  ]
 
   const formatChartData = (reports: ReportIncident[]): ChartData[] => {
     const categoryCount = reports.reduce(
@@ -122,8 +125,8 @@ export default function DashboardPage() {
         />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+        <Card className="col-span-9">
           <CardHeader>
             <CardTitle>Statistik Kategori Laporan</CardTitle>
           </CardHeader>

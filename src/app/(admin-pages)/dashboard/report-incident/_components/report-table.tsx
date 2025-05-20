@@ -32,7 +32,7 @@ export default function ReportIncidentTable() {
       email: report.email,
       gender: report.gender as 'MALE' | 'FEMALE',
       studyProgram: report.studyProgram as
-        | 'COMPUTER_ENGINEERING'
+        | 'INFORMATICS_ENGINEERING'
         | 'INFORMATION_SYSTEMS'
         | 'DIGITAL_BUSINESS',
       semester: report.semester,
@@ -51,7 +51,7 @@ export default function ReportIncidentTable() {
       Email: item.email,
       'Jenis Kelamin': item.gender === 'MALE' ? 'Laki-laki' : 'Perempuan',
       'Program Studi': {
-        COMPUTER_ENGINEERING: 'Teknik Komputer',
+        INFORMATICS_ENGINEERING: 'Teknik Informatika',
         INFORMATION_SYSTEMS: 'Sistem Informasi',
         DIGITAL_BUSINESS: 'Bisnis Digital',
       }[item.studyProgram],

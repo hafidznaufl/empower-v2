@@ -66,7 +66,7 @@ async function main() {
         name: 'Report 2',
         email: 'report2@gmail.com',
         gender: 'FEMALE',
-        studyProgram: 'COMPUTER_ENGINEERING',
+        studyProgram: 'INFORMATICS_ENGINEERING',
         semester: '6',
         contact: '987654321',
         willingToBeContacted: false,
