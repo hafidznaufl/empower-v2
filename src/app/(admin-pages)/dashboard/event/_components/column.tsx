@@ -98,7 +98,7 @@ export const columns: ColumnDef<EventColumn>[] = [
       return (
         <div className="flex items-center gap-2 px-2">
           <Clock className="h-4 w-4 text-muted-foreground" />
-          {format(new Date(time), 'HH:mm')}
+          {format(new Date(time), 'hh:mm a')}
         </div>
       )
     },
@@ -113,7 +113,7 @@ export const columns: ColumnDef<EventColumn>[] = [
       return (
         <div className="flex items-center gap-2 px-2">
           <Clock className="h-4 w-4 text-muted-foreground" />
-          {format(new Date(time), 'HH:mm')}
+          {format(new Date(time), 'hh:mm a')}
         </div>
       )
     },

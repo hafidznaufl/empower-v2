@@ -32,6 +32,7 @@ import { eventSchema } from './schema'
 import UpdateFormSkeleton from '~/app/_components/skeletons/update-form-skeleton'
 import Image from 'next/image'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
+import TimePopover from '~/app/_components/ui/time-popover'
 
 type EventFormValues = z.infer<typeof eventSchema>
 
@@ -131,7 +132,6 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {/* Title */}
         <FormField
           control={form.control}
           name="title"
@@ -146,7 +146,6 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
-        {/* Description */}
         <FormField
           control={form.control}
           name="description"
@@ -161,7 +160,6 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
-        {/* Date */}
         <FormField
           control={form.control}
           name="date"
@@ -179,9 +177,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, 'EEEE, dd MMMM yyyy', {
-                          locale: IDLocale,
-                        })
+                        format(field.value, 'EEEE, dd MMMM yyyy')
                       ) : (
                         <span>Pick a date</span>
                       )}
@@ -193,16 +189,20 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
                   className="w-auto p-0"
                   align="start"
                   aria-hidden={false}
+                  disablePortal
                 >
                   <Calendar
                     mode="single"
                     captionLayout="dropdown-buttons"
                     selected={field.value}
-                    onSelect={(date) => field.onChange(date ?? new Date())}
+                    onSelect={(date) => {
+                      field.onChange(date ?? new Date())
+                    }}
                     fromYear={1970}
                     toYear={new Date().getFullYear()}
                     defaultMonth={new Date()}
                     initialFocus
+                    dropdownOpen={undefined}
                   />
                 </PopoverContent>
               </Popover>
@@ -211,7 +211,6 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
-        {/* Time Start */}
         <FormField
           control={form.control}
           name="timeStart"
@@ -219,24 +218,13 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>Start Time</FormLabel>
               <FormControl>
-                <Input
-                  type="time"
-                  value={format(field.value, 'HH:mm')}
-                  onChange={(e) => {
-                    const [hours, minutes] = e.target.value.split(':')
-                    const newDate = new Date(field.value)
-                    newDate.setHours(Number(hours))
-                    newDate.setMinutes(Number(minutes))
-                    field.onChange(newDate)
-                  }}
-                />
+                <TimePopover value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* Time End */}
         <FormField
           control={form.control}
           name="timeEnd"
@@ -244,24 +232,13 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>End Time</FormLabel>
               <FormControl>
-                <Input
-                  type="time"
-                  value={format(field.value, 'HH:mm')}
-                  onChange={(e) => {
-                    const [hours, minutes] = e.target.value.split(':')
-                    const newDate = new Date(field.value)
-                    newDate.setHours(Number(hours))
-                    newDate.setMinutes(Number(minutes))
-                    field.onChange(newDate)
-                  }}
-                />
+                <TimePopover value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* Location */}
         <FormField
           control={form.control}
           name="location"
@@ -276,7 +253,6 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           )}
         />
 
-        {/* Room */}
         <FormField
           control={form.control}
           name="room"

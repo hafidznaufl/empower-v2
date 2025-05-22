@@ -6,7 +6,23 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 
 import { cn } from '~/utils/cn'
 
-const Select = SelectPrimitive.Root
+// ✅ Custom Select wrapper to support `open`, `defaultOpen`, and `onOpenChange`
+const Select = ({
+  children,
+  open,
+  defaultOpen,
+  onOpenChange,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Root>) => (
+  <SelectPrimitive.Root
+    open={open}
+    defaultOpen={defaultOpen}
+    onOpenChange={onOpenChange}
+    {...props}
+  >
+    {children}
+  </SelectPrimitive.Root>
+)
 
 const SelectGroup = SelectPrimitive.Group
 

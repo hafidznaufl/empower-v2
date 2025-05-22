@@ -32,6 +32,7 @@ import { cn } from '~/utils/cn'
 import { eventSchema } from './schema'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
 import { api } from '~/trpc/react'
+import TimePopover from '~/app/_components/ui/time-popover'
 
 type EventFormValues = z.infer<typeof eventSchema>
 
@@ -47,8 +48,8 @@ export default function CreateEventForm() {
       title: '',
       description: '',
       date: undefined,
-      timeStart: new Date(),
-      timeEnd: new Date(),
+      timeStart: undefined,
+      timeEnd: undefined,
       location: '',
       room: '',
       capacity: '',
@@ -153,7 +154,11 @@ export default function CreateEventForm() {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="z-50 w-auto p-0" align="start">
+                <PopoverContent
+                  className="w-auto p-0"
+                  align="start"
+                  disablePortal
+                >
                   <Calendar
                     mode="single"
                     captionLayout="dropdown-buttons"
@@ -177,17 +182,7 @@ export default function CreateEventForm() {
             <FormItem>
               <FormLabel>Start Time</FormLabel>
               <FormControl>
-                <Input
-                  type="time"
-                  value={format(field.value, 'HH:mm')}
-                  onChange={(e) => {
-                    const [hours, minutes] = e.target.value.split(':')
-                    const newDate = new Date(field.value)
-                    newDate.setHours(Number(hours))
-                    newDate.setMinutes(Number(minutes))
-                    field.onChange(newDate)
-                  }}
-                />
+                <TimePopover value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -201,17 +196,7 @@ export default function CreateEventForm() {
             <FormItem>
               <FormLabel>End Time</FormLabel>
               <FormControl>
-                <Input
-                  type="time"
-                  value={format(field.value, 'HH:mm')}
-                  onChange={(e) => {
-                    const [hours, minutes] = e.target.value.split(':')
-                    const newDate = new Date(field.value)
-                    newDate.setHours(Number(hours))
-                    newDate.setMinutes(Number(minutes))
-                    field.onChange(newDate)
-                  }}
-                />
+                <TimePopover value={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

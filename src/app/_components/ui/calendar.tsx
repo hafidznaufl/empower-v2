@@ -15,12 +15,17 @@ import { cn } from '~/utils/cn'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { DayPicker, type DropdownProps } from 'react-day-picker'
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  dropdownOpen?: boolean
+  onDropdownOpenChange?: (open: boolean) => void
+}
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
+  dropdownOpen,
+  onDropdownOpenChange,
   ...props
 }: CalendarProps) {
   return (
@@ -61,23 +66,32 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Dropdown: ({ value, onChange, children, ...props }: DropdownProps) => {
+        Dropdown: ({ value, onChange, children }: DropdownProps) => {
           const options = React.Children.toArray(
             children,
           ) as React.ReactElement<React.HTMLProps<HTMLOptionElement>>[]
+
           const selected = options.find((child) => child.props.value === value)
+
           const handleChange = (value: string) => {
             const changeEvent = {
               target: { value },
             } as React.ChangeEvent<HTMLSelectElement>
             onChange?.(changeEvent)
           }
+
+          const [localOpen, setLocalOpen] = React.useState(false)
+          const isControlled = dropdownOpen !== undefined
+
+          const open = isControlled ? dropdownOpen : localOpen
+          const setOpen = isControlled ? onDropdownOpenChange! : setLocalOpen
+
           return (
             <Select
               value={value?.toString()}
-              onValueChange={(value) => {
-                handleChange(value)
-              }}
+              onValueChange={(value) => handleChange(value)}
+              open={open}
+              onOpenChange={setOpen}
             >
               <SelectTrigger className="gap-2 pr-1.5 focus:ring-0">
                 <SelectValue>{selected?.props?.children}</SelectValue>
@@ -97,8 +111,8 @@ function Calendar({
             </Select>
           )
         },
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: () => <ChevronLeft className="h-4 w-4" />,
+        IconRight: () => <ChevronRight className="h-4 w-4" />,
       }}
       {...props}
     />
