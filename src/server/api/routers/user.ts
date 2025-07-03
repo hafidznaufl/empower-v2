@@ -13,8 +13,10 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const existing = await ctx.db.user.findUnique({
-        where: { id: input.id },
+      const existing = await ctx.db.user.findFirst({
+        where: {
+          OR: [{ id: input.id }, { email: input.email }],
+        },
       })
 
       if (existing) return existing
