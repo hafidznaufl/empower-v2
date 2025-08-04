@@ -7,6 +7,7 @@ import { Toaster } from './_components/ui/sonner'
 import { ThemeProvider } from './_components/theme-provider'
 import RouteProtectLayout from './(client-public-pages)/_components/layout/route-protect-layout'
 import { Suspense } from 'react'
+import { SuspenseFallback } from './_components/skeletons/suspense-fallback'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <TRPCReactProvider>
-          <Suspense>
+          <Suspense fallback={<SuspenseFallback />}>
             <RouteProtectLayout>
               <ThemeProvider
                 attribute="class"

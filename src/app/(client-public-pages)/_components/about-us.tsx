@@ -21,6 +21,7 @@ export default function AboutUs() {
             fill
             sizes="100%"
             className="object-cover object-center transition-transform duration-300 ease-in-out group-hover:scale-110"
+            placeholder="blur"
           />
         </div>
         <CardHeader className="space-y-4 pt-0 md:pl-0 md:pt-6">
@@ -31,6 +32,7 @@ export default function AboutUs() {
               width={100}
               height={100}
               className="rounded-full border"
+              placeholder="blur"
             />
           </div>
           <div>

@@ -31,8 +31,8 @@ export default function AuthLayout({
             alt="Image"
             width="1920"
             height="1080"
-            priority={true}
             className="h-screen object-cover dark:brightness-[0.2] dark:grayscale"
+            placeholder="blur"
           />
           <div className="absolute bottom-10 left-10 pr-14 text-white">
             <p className="text-xl">

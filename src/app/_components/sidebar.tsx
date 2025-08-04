@@ -191,14 +191,17 @@ export default function Sidebar() {
               className={`mt-4 flex h-10 w-full cursor-pointer flex-row items-center justify-start rounded-sm transition-all ${showSidebar ? 'gap-2' : 'gap-0'} `}
             >
               <Avatar className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                <AvatarImage src={``} className="h-10 w-10 rounded-full" />
-                <AvatarFallback>
-                  <Image
-                    src={AvatarFallbackIcon}
-                    width={50}
-                    height={50}
-                    alt="Profile Picture"
-                    className="h-10 w-10 rounded-full"
+                <AvatarImage
+                  src={session?.user_metadata?.avatar_url || ''}
+                  alt="Profile Picture"
+                  className="h-10 w-10 rounded-full"
+                />
+                <AvatarFallback className="h-10 w-10 rounded-full p-0">
+                  <img
+                    src="/image/avatar.jpg"
+                    alt="Fallback Profile"
+                    className="h-10 w-10 rounded-full object-cover"
+                    loading="lazy"
                   />
                 </AvatarFallback>
               </Avatar>

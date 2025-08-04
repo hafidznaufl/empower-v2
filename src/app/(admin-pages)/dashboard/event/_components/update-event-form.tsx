@@ -1,15 +1,11 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { type z } from 'zod'
+import type { z } from 'zod'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
-import { id as IDLocale } from 'date-fns/locale'
-
 import { Button } from '~/components/ui/button'
-import { Calendar } from '~/components/ui/calendar'
 import {
   Form,
   FormControl,
@@ -33,6 +29,9 @@ import UpdateFormSkeleton from '~/app/_components/skeletons/update-form-skeleton
 import Image from 'next/image'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
 import TimePopover from '~/app/_components/ui/time-popover'
+import { useForm, useWatch } from 'react-hook-form'
+import { Calendar } from '~/app/_components/ui/calendar'
+import { useCalendarAccordion } from '~/utils/hooks/useCalendarAccordion'
 
 type EventFormValues = z.infer<typeof eventSchema>
 
@@ -75,7 +74,14 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
     },
   })
 
-  const isFormReady = useRef(false) // Flag to prevent resetting the form repeatedly
+  const calendar = useCalendarAccordion({
+    initialDate: form.watch('date') ?? new Date(),
+    fromYear: 1970,
+    toYear: new Date().getFullYear() + 2,
+    onSelect: (date) => form.setValue('date', date),
+  })
+
+  const isFormReady = useRef(false)
 
   useEffect(() => {
     if (eventData && !isFormReady.current) {
@@ -89,7 +95,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
       })
       isFormReady.current = true
     }
-  }, [eventData, form]) // only reset if eventData changes
+  }, [eventData, form])
 
   const currentPreview = useWatch({
     control: form.control,
@@ -139,7 +145,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Event title" {...field} />
+                <Input id="title" placeholder="Event title" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -153,7 +159,11 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder="Event description" {...field} />
+                <Input
+                  id="description"
+                  placeholder="Event description"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -164,48 +174,17 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
           control={form.control}
           name="date"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Date</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        'w-full pl-3 text-left font-normal',
-                        !field.value && 'text-muted-foreground',
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, 'EEEE, dd MMMM yyyy')
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 text-muted-foreground" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent
-                  className="w-auto p-0"
-                  align="start"
-                  aria-hidden={false}
-                  disablePortal
-                >
-                  <Calendar
-                    mode="single"
-                    captionLayout="dropdown-buttons"
-                    selected={field.value}
-                    onSelect={(date) => {
-                      field.onChange(date ?? new Date())
-                    }}
-                    fromYear={1970}
-                    toYear={new Date().getFullYear()}
-                    defaultMonth={new Date()}
-                    initialFocus
-                    dropdownOpen={undefined}
-                  />
-                </PopoverContent>
-              </Popover>
+            <FormItem className="flex flex-col">
+              <FormLabel>Expiry Date</FormLabel>
+              <FormControl>
+                <div className="w-full">
+                  {calendar.withAccordion(
+                    field.value
+                      ? format(field.value, 'EEEE, dd MMMM yyyy')
+                      : 'Pick a date',
+                  )}
+                </div>
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -246,7 +225,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>Location</FormLabel>
               <FormControl>
-                <Input placeholder="Event location" {...field} />
+                <Input id="location" placeholder="Event location" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -260,7 +239,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>Room</FormLabel>
               <FormControl>
-                <Input placeholder="Room or hall" {...field} />
+                <Input id="room" placeholder="Room or hall" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -275,7 +254,12 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
             <FormItem>
               <FormLabel>Capacity</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="Total capacity" {...field} />
+                <Input
+                  id="capacity"
+                  type="number"
+                  placeholder="Total capacity"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -309,6 +293,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
                     </div>
                   )}
                   <Input
+                    id="thumbnailURL"
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
