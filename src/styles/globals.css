@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 4.76% 95.88%;
+    --foreground: 20 14.3% 4.1%;
+    --muted: 60 0% 83.08%;
+    --muted-foreground: 25 6.54% 19.49%;
+    --popover: 60 4.76% 95.88%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9.41%;
+    --border: 0 0% 83.14%;
+    --input: 20 5.9% 90%;
+    --primary: 205.31 59.26% 21.18%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 204.55 37.65% 85.2%;
+    --secondary-foreground: 204.88 71.93% 11.18%;
+    --accent: 203.57 36.84% 85.1%;
+    --accent-foreground: 204.71 72.73% 11.13%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --ring: 20 14.3% 4.1%;
+    --chart-1: 205.31 59.26% 21.18%;
+    --chart-2: 204.55 37.65% 85.2%;
+    --chart-3: 203.57 36.84% 85.1%;
+    --chart-4: 204.55 37.65% 88.2%;
+    --chart-5: 205.31 62.26% 21.18%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --card: 0 0% 8.63%;
+    --card-foreground: 0 0% 100%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --ring: 24 5.7% 82.9%;
+    --chart-1: 60 9.1% 97.8%;
+    --chart-2: 12 6.5% 15.1%;
+    --chart-3: 12 6.5% 15.1%;
+    --chart-4: 12 6.5% 18.1%;
+    --chart-5: 60 12.1% 97.8%;
+  }
+}
+
+@layer base {
+  :root {
+    --text-default: #150e00;
+    --text-gray: #6b7280;
+    --text-brown: #92400e;
+    --text-orange: #ea580c;
+    --text-yellow: #ca8a04;
+    --text-green: #16a34a;
+    --text-blue: #2563eb;
+    --text-purple: #9333ea;
+    --text-pink: #db2777;
+    --text-red: #dc2626;
+
+    --highlight-default: #ffffff;
+    --highlight-gray: #f3f4f6;
+    --highlight-brown: #fef3c7;
+    --highlight-orange: #ffedd5;
+    --highlight-yellow: #fef9c3;
+    --highlight-green: #dcfce7;
+    --highlight-blue: #dbeafe;
+    --highlight-purple: #f3e8ff;
+    --highlight-pink: #fce7f3;
+    --highlight-red: #fee2e2;
+  }
+
+  .dark {
+    --text-default: #f9f9f8;
+    --text-gray: #9ca3af;
+    --text-brown: #d97706;
+    --text-orange: #f97316;
+    --text-yellow: #eab308;
+    --text-green: #22c55e;
+    --text-blue: #3b82f6;
+    --text-purple: #a855f7;
+    --text-pink: #ec4899;
+    --text-red: #ef4444;
+
+    --highlight-default: #150e00;
+    --highlight-gray: #374151;
+    --highlight-brown: #78350f;
+    --highlight-orange: #9a3412;
+    --highlight-yellow: #854d0e;
+    --highlight-green: #166534;
+    --highlight-blue: #1e40af;
+    --highlight-purple: #6b21a8;
+    --highlight-pink: #9d174d;
+    --highlight-red: #991b1b;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .custom-scrollbar {
+    @apply [&::-webkit-scrollbar]:w-1.5;
+    @apply [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-300;
+    @apply [&::-webkit-scrollbar-thumb]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-400 [&::-webkit-scrollbar-thumb]:px-1;
+    @apply dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:[&::-webkit-scrollbar-track]:bg-neutral-700;
+  }
+}
+
+@media (max-width: 1024px) {
+  .custom-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.rdp-vhidden {
+  @apply hidden;
+}
+
+.rdp {
+  @apply relative z-[1000] !important;
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 8s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}

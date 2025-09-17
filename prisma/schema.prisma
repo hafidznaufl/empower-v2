@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+}
+
+model User {
+    id        String    @id @default(uuid())
+    name      String
+    email     String    @unique
+    password  String
+    role      UserRole  @default(CLIENT)
+    avatarURL String?
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+    blog      Blog[]
+}
+
+enum UserRole {
+    ADMIN
+    CLIENT
+}
+
+model ReportIncident {
+    id                   String           @id @default(uuid())
+    name                 String
+    email                String
+    dayOfBirth           DateTime         @default(now())
+    gender               GenderKind
+    studyProgram         StudyProgramKind
+    semester             String
+    contact              String
+    willingToBeContacted Boolean
+    incidentDescription  String
+    fileURL              String[]
+    reportStatus         ReportStatus     @default(PENDING)
+    createdAt            DateTime         @default(now())
+    updatedAt            DateTime         @updatedAt
+    deletedAt            DateTime?
+}
+
+enum StudyProgramKind {
+    INFORMATION_SYSTEMS
+    INFORMATICS_ENGINEERING
+    DIGITAL_BUSINESS
+}
+
+enum ReportStatus {
+    PENDING
+    IN_PROCESS
+    PROVEN_LIGHTLY_SANCTIONED
+    PROVEN_MODERATElYY_SANCTIONED
+    PROVEN_SEVERELY_SANCTIONED
+    SOLVED
+    NOT_PROVEN
+    NOT_SANCTIONED
+}
+
+enum GenderKind {
+    MALE
+    FEMALE
+}
+
+model Event {
+    id           String    @id @default(uuid())
+    title        String
+    description  String
+    date         DateTime
+    timeStart    DateTime
+    timeEnd      DateTime
+    location     String
+    room         String
+    capacity     String
+    thumbnailURL String?
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+    deletedAt    DateTime?
+}
+
+model Blog {
+    id           String       @id @default(uuid())
+    title        String
+    description  String
+    content      Json
+    category     BLogCategory @default(NEWS)
+    thumbnailURL String?
+    authorId     String
+    author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    blogStatus   BlogStatus   @default(PENDING)
+    createdAt    DateTime     @default(now())
+    updatedAt    DateTime     @updatedAt
+    deletedAt    DateTime?
+}
+
+enum BlogStatus {
+    PENDING
+    PUBLISHED
+    ARCHIVED
+}
+
+enum BLogCategory {
+    BLOG
+    NEWS
+    PRESS_RELEASE
+}
