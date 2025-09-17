@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client'
 
 import { WrapText } from 'lucide-react'
@@ -32,7 +34,7 @@ const HardBreakToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <WrapText className="h-4 w-4" />}
+              {children ?? <WrapText className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

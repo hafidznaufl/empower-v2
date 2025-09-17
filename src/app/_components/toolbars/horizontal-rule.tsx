@@ -31,7 +31,7 @@ const HorizontalRuleToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <SeparatorHorizontal className="h-4 w-4" />}
+              {children ?? <SeparatorHorizontal className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

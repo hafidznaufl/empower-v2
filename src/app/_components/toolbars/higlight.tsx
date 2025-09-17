@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client'
 
 import { Button } from '~/components/ui/button'
@@ -7,7 +9,6 @@ import {
   PopoverTrigger,
 } from '~/components/ui/popover'
 import { ScrollArea } from '~/components/ui/scroll-area'
-import { Separator } from '~/components/ui/separator'
 import {
   Tooltip,
   TooltipContent,

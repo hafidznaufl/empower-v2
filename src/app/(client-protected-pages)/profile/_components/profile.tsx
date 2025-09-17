@@ -20,7 +20,7 @@ export default function Profile() {
   const session = useClientUserSession()
 
   return (
-    <div className="container mx-auto mt-[4.5rem] mb-6 space-y-6 px-4 md:my-8">
+    <div className="container mx-auto mb-6 mt-[4.5rem] space-y-6 px-4 md:my-8">
       <Card className="relative">
         <CardHeader className="flex-col items-center gap-4 text-center">
           <Avatar className="h-20 w-20">
@@ -68,7 +68,7 @@ export default function Profile() {
         <CardHeader>
           <CardTitle>Your Blog List</CardTitle>
           <CardDescription>
-            All blogs you've created will appear here.
+            All blogs you&apos;ve created will appear here.
           </CardDescription>
           <Separator />
         </CardHeader>

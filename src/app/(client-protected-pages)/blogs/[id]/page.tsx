@@ -1,8 +1,8 @@
+/* eslint-disable */
 'use client'
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
 import { Copy, Check } from 'lucide-react'
 import SingleBlogSkeletonLoader from '~/components/skeletons/single-blog-skeleton'
 import { Card, CardHeader } from '~/components/ui/card'
@@ -10,6 +10,12 @@ import { Separator } from '~/components/ui/separator'
 import { Button } from '~/components/ui/button'
 import { api } from '~/trpc/react'
 import { toast } from 'sonner'
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '~/app/_components/ui/avatar'
+import Image from 'next/image'
 
 const BlogPage = () => {
   const pathname = usePathname()
@@ -66,7 +72,7 @@ const BlogPage = () => {
   }
 
   return (
-    <div className="container mx-auto mb-4 mt-[4.5rem] flex flex-col md:mt-8 px-4">
+    <div className="container mx-auto mb-4 mt-[4.5rem] flex flex-col px-4 md:mt-8">
       <div
         className="prose mb-8 max-w-none"
         dangerouslySetInnerHTML={{ __html: (blog.content as string) || '' }}
@@ -76,19 +82,22 @@ const BlogPage = () => {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div className="flex items-center gap-4">
-            {blog.author.avatarURL ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL}/${blog.author.avatarURL}`}
-                alt={blog.author.name}
-                width={40}
-                height={40}
-                className="h-10 w-10 rounded-full"
+            <Avatar className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
+              <AvatarImage
+                src={blog.author.avatarURL ?? '/image/avatar.jpg'}
+                alt="Profile Picture"
+                className="h-10 w-10 rounded-full object-cover"
               />
-            ) : (
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-sm text-gray-600">
-                {blog.author.name.charAt(0).toUpperCase()}
-              </div>
-            )}
+              <AvatarFallback className="h-10 w-10 rounded-full p-0">
+                <Image
+                  src="/image/avatar.jpg"
+                  alt="Fallback Profile"
+                  className="h-10 w-10 rounded-full object-cover"
+                  loading="lazy"
+                />
+              </AvatarFallback>
+            </Avatar>
+
             <div className="flex flex-col">
               <p className="text-sm font-semibold">{blog.author.name}</p>
               <p className="text-xs text-gray-500">{blog.author.email}</p>

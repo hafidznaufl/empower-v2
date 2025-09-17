@@ -2,15 +2,14 @@
 
 import { createClient } from '@supabase/supabase-js'
 import { registerSchema } from './schemas'
+import { env } from '~/env'
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  env.NEXT_PUBLIC_SUPABASE_URL,
+  env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 )
 
-const ADMIN_EMAILS = process.env.NEXT_PUBLIC_ADMIN_EMAILS
-  ? process.env.NEXT_PUBLIC_ADMIN_EMAILS.split(',')
-  : []
+const ADMIN_EMAILS = env.ADMIN_EMAILS ? env.ADMIN_EMAILS.split(',') : []
 
 export const registerAction = async (values: {
   name: string

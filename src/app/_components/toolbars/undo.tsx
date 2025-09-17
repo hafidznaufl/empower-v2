@@ -32,7 +32,7 @@ const UndoToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <CornerUpLeft className="h-4 w-4" />}
+              {children ?? <CornerUpLeft className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

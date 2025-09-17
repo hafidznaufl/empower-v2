@@ -1,7 +1,6 @@
 'use client'
 
 import { format } from 'date-fns'
-import { id } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
 
 type PortData = {

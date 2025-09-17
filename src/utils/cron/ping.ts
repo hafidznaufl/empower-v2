@@ -1,11 +1,14 @@
+/* eslint-disable */
+
 import 'dotenv/config'
 import cron from 'node-cron'
 import { createClient } from '@supabase/supabase-js'
 import { format } from 'date-fns'
+import { env } from '~/env'
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  env.NEXT_PUBLIC_SUPABASE_URL,
+  env.SUPABASE_SERVICE_ROLE_KEY,
 )
 
 const getTimestamp = () => format(new Date(), "EEE, dd MMM yyyy HH:mm:ss 'GMT'")

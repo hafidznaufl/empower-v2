@@ -1,10 +1,9 @@
 'use client'
 
-import { Column, type ColumnDef } from '@tanstack/react-table'
+import { type Column, type ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import {
-  MoreHorizontal,
   Phone,
   Mail,
   BadgeCheck,
@@ -14,11 +13,10 @@ import {
   XCircle,
   MinusCircle,
 } from 'lucide-react'
-
 import { Checkbox } from '~/components/ui/checkbox'
 import { Badge } from '~/components/ui/badge'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
-import { ReportIncidentColumn } from './schema'
+import { type ReportIncidentColumn } from './schema'
 import { DataTableStatusColumnHeader } from '~/components/tables/data-table-status-header'
 import { DataTableBooleanColumnHeader } from '~/app/_components/tables/data-table-boolean-header'
 import { ReportActions } from './report-actions'

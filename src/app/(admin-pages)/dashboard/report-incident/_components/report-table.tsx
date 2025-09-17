@@ -5,8 +5,10 @@ import { api } from '~/trpc/react'
 import { FilePlus2 } from 'lucide-react'
 import TableSkeleton from '~/app/_components/skeletons/table-skeleton'
 import { columns } from './column'
-import { ReportIncidentColumn } from './schema'
+import { type ReportIncidentColumn } from './schema'
 import { useExportToExcel } from '~/utils/hooks/useExportToExcel'
+import { id } from 'date-fns/locale'
+import { format } from 'date-fns'
 
 export default function ReportIncidentTable() {
   const { data, isLoading, isFetching, error } = api.report.getAll.useQuery()
@@ -81,11 +83,13 @@ export default function ReportIncidentTable() {
         useSheet={false}
         linkTo="/report-incident"
         onExportExcel={() => {
-          const fileName = `report-incident-${new Date().toISOString().slice(0, 10)}.xlsx`
+          const today = format(new Date(), 'EEEE, dd MMMM yyyy', { locale: id })
+          const fileName = `Laporan-Satgas-PPKS-STTNF-${today}.xlsx`
           exportToExcel(formatExportData(formattedData), fileName)
         }}
         onExportCsv={() => {
-          const fileName = `report-incident-${new Date().toISOString().slice(0, 10)}.xlsx`
+          const today = format(new Date(), 'EEEE, dd MMMM yyyy', { locale: id })
+          const fileName = `Laporan-Satgas-PPKS-STTNF-${today}.csv`
           exportToCSV(formatExportData(formattedData), fileName)
         }}
       />

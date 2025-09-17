@@ -1,13 +1,12 @@
 'use client'
 
-import { Suspense } from 'react'
 import { FilePlus2 } from 'lucide-react'
 
 import { api } from '~/trpc/react'
 import { DataTable } from '~/app/_components/tables/data-table'
 import TableSkeleton from '~/app/_components/skeletons/table-skeleton'
 import { columns } from './column'
-import { EventColumn } from './schema'
+import { type EventColumn } from './schema'
 import CreateEventForm from './create-event-form'
 
 export default function EventTable() {

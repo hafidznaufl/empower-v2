@@ -33,6 +33,7 @@ import { eventSchema } from './schema'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
 import { api } from '~/trpc/react'
 import TimePopover from '~/app/_components/ui/time-popover'
+import { env } from '~/env'
 
 type EventFormValues = z.infer<typeof eventSchema>
 
@@ -60,7 +61,7 @@ export default function CreateEventForm() {
   const createEvent = api.event.create.useMutation({
     onSuccess: () => {
       toast.success('Event created successfully!')
-      utils.event.getAll.invalidate()
+      void utils.event.getAll.invalidate()
       router.push('/dashboard/event')
     },
     onError: (error) => {
@@ -92,7 +93,9 @@ export default function CreateEventForm() {
         thumbnailURL,
       })
     } catch (err) {
-      toast.error('Unexpected error occurred.')
+      toast.error('Unexpected error occurred.', {
+        description: err instanceof Error ? err.message : undefined,
+      })
     }
   }
 
@@ -264,8 +267,7 @@ export default function CreateEventForm() {
                           src={
                             currentPreview.startsWith('http')
                               ? currentPreview
-                              : process.env
-                                  .NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
+                              : env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
                                 currentPreview
                           }
                           alt="Thumbnail Preview"

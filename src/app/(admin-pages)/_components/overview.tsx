@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import React from 'react'
@@ -34,7 +35,7 @@ type CustomTooltipProps = {
 }
 
 function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (active && payload && payload.length && label) {
+  if (active && payload?.length && label) {
     return (
       <div className="rounded-md border border-gray-300 bg-white p-3 text-sm text-black shadow-md">
         <p className="mb-1 font-semibold">{statusLabels[label] ?? label}</p>

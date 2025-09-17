@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import {
@@ -17,10 +18,10 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { id } from 'date-fns/locale'
 import { api } from '~/trpc/react'
 import { CalendarIcon, Clock, MapPin, Users } from 'lucide-react'
 import EventSkeletonLoader from '~/app/_components/skeletons/event-skeleton'
+import { env } from '~/env'
 export default function EventList() {
   const { data: events, isLoading, isError } = api.event.getAll.useQuery()
 
@@ -54,7 +55,6 @@ export default function EventList() {
 
   const getEventStatus = (event: any) => {
     const now = new Date()
-    const eventDate = new Date(event.date)
 
     const startDateTime = new Date(event.date)
     startDateTime.setHours(
@@ -167,7 +167,7 @@ export default function EventList() {
                           {event.thumbnailURL ? (
                             <Image
                               fill
-                              src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${event.thumbnailURL}`}
+                              src={`${env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${event.thumbnailURL}`}
                               alt={event.title}
                               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />

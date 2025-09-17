@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/components/ui/select'
+import { env } from '~/env'
 
 type AuthorBlogListProps = {
   authorId: string
@@ -112,7 +113,8 @@ export function AuthorBlogList({ authorId }: AuthorBlogListProps) {
         </div>
         <h3 className="mt-4 text-lg font-semibold">No blogs found</h3>
         <p className="mt-2 text-muted-foreground">
-          You haven't created any blogs yet. Start writing your first blog post.
+          You haven&apos;t created any blogs yet. Start writing your first blog
+          post.
         </p>
         <Button className="mt-6">Create your first blog</Button>
       </div>
@@ -184,7 +186,7 @@ export function AuthorBlogList({ authorId }: AuthorBlogListProps) {
               <div className="relative h-40 w-full overflow-hidden">
                 <Image
                   fill
-                  src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${blog.thumbnailURL}`}
+                  src={`${env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${blog.thumbnailURL}`}
                   alt={blog.title}
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -290,7 +292,7 @@ export function AuthorBlogList({ authorId }: AuthorBlogListProps) {
       </div>
 
       {filteredBlogs?.length === 0 && (
-        <div className="rounded-lg border p-8 text-center space-y-6">
+        <div className="space-y-6 rounded-lg border p-8 text-center">
           <p className="text-muted-foreground">
             No blogs match your search criteria.
           </p>

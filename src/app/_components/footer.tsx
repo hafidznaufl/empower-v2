@@ -17,7 +17,7 @@ export default function FooterContent() {
           <span>
             Developed by{' '}
             <Link
-              href="https://github.com/hafidznaufl"
+              href="https://www.linkedin.com/in/hafidznaufl/"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-white"

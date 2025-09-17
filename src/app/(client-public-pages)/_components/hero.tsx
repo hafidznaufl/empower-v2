@@ -18,7 +18,7 @@ export default function Hero() {
 
   return (
     <div className="container mx-auto my-20 min-h-[47rem] px-4 md:px-0">
-      <div className="grid place-items-center gap-6 text-center pt-16 md:pt-24">
+      <div className="grid place-items-center gap-6 pt-16 text-center md:pt-24">
         <div
           className={cn(
             'group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800',
@@ -33,9 +33,9 @@ export default function Hero() {
           </AnimatedShinyText>
         </div>
         <div className={`${rubikFont.className} text-4xl font-bold`}>
-          "Your Voice, Your Strength, Our Protection"
+          &quot;Your Voice, Your Strength, Our Protection&quot;
         </div>
-        <div className="mx-auto max-w-96 md:max-w-[750px] text-pretty text-lg text-muted-foreground sm:text-xl">
+        <div className="mx-auto max-w-96 text-pretty text-lg text-muted-foreground sm:text-xl md:max-w-[750px]">
           Empower is your trusted ally in the fight against sexual violence. Our
           platform provides a safe space to report incidents, access emergency
           help, and connect with professional support. Empower yourself and

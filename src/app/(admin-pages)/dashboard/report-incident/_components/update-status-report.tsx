@@ -77,7 +77,7 @@ export default function UpdateIncidentStatusForm({
   const updateMutation = api.report.update.useMutation({
     onSuccess() {
       toast.success('Incident status updated successfully.')
-      utils.report.getAll.invalidate()
+      void utils.report.getAll.invalidate()
     },
     onError() {
       toast.error('Failed to update incident status.')

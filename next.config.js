@@ -3,17 +3,18 @@
  * for Docker builds.
  */
 import './src/env.js'
+import { env } from './src/env.js'
+
+const supabaseUrl = new URL(env.NEXT_PUBLIC_SUPABASE_URL)
+const supabaseHostname = supabaseUrl.hostname
 
 /** @type {import("next").NextConfig} */
 const config = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'ppljqjgqakumvwpujdxg.supabase.co',
+        hostname: supabaseHostname,
         pathname: '/**',
       },
     ],

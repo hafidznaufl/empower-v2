@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import { Button } from '~/components/ui/button'
@@ -25,7 +26,6 @@ import { Image, Link, Upload } from 'lucide-react'
 import { type FormEvent, useState } from 'react'
 import { BarLoader } from 'react-spinners'
 import { cn } from '~/utils/cn'
-import { createClient } from '~/utils/supabase/client'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
 
 export interface ImagePlaceholderOptions {

@@ -4,7 +4,7 @@ import { DataTable } from '~/app/_components/tables/data-table'
 import { api } from '~/trpc/react'
 import { FilePlus2 } from 'lucide-react'
 import { Suspense } from 'react'
-import { BlogColumn } from './schema'
+import { type BlogColumn } from './schema'
 import TableSkeleton from '~/app/_components/skeletons/table-skeleton'
 import { columns } from './column'
 

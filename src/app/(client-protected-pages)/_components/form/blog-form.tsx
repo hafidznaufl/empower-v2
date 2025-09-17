@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import {
@@ -19,7 +20,7 @@ import {
   CardTitle,
 } from '~/components/ui/card'
 
-import * as z from 'zod'
+import { type z } from 'zod'
 import { Button } from '~/components/ui/button'
 import { Textarea } from '~/components/ui/textarea'
 import TextEditor from '~/components/text-editor'

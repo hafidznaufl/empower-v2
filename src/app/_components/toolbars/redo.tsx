@@ -33,7 +33,7 @@ const RedoToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <CornerUpRight className="h-4 w-4" />}
+              {children ?? <CornerUpRight className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

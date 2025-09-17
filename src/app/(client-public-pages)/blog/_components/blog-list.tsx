@@ -17,9 +17,9 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { id } from 'date-fns/locale'
 import BlogSkeletonLoader from '~/app/_components/skeletons/blog-skeleton'
 import { api } from '~/trpc/react'
+import { env } from '~/env'
 
 export default function BlogList() {
   const {
@@ -93,7 +93,7 @@ export default function BlogList() {
                       <div className="relative h-40 w-full overflow-hidden">
                         <Image
                           fill
-                          src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${blog.thumbnailURL}`}
+                          src={`${env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${blog.thumbnailURL}`}
                           alt={blog.title}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
@@ -127,7 +127,7 @@ export default function BlogList() {
                     <CardFooter className="mt-auto flex items-center gap-3 border-t border-gray-100 px-5 py-4 dark:border-gray-800">
                       {blog.author?.avatarURL ? (
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}/${blog.author.avatarURL}`}
+                          src={`${env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}/${blog.author.avatarURL}`}
                           alt={blog.author.name}
                           width={40}
                           height={40}

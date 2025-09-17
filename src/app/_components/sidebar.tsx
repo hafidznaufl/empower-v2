@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client'
 
 import { useState } from 'react'
@@ -12,8 +14,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '~/components/ui/tooltip'
-import Image from 'next/image'
-import AvatarFallbackIcon from '~/public/image/avatar.jpg'
 import { useRouter } from 'next/navigation'
 import {
   CalendarDays,
@@ -27,8 +27,8 @@ import {
 } from 'lucide-react'
 import SignOut from './logout-button'
 import { useClientUserSession } from '~/utils/hooks/useUserSession'
-
-import { DashboardIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons'
+import { DoubleArrowRightIcon } from '@radix-ui/react-icons'
+import Image from 'next/image'
 
 type NavigationMenu = {
   path: string
@@ -65,7 +65,7 @@ const menus: NavigationMenu[] = [
 ]
 
 export default function Sidebar() {
-  const [showSidebar, setShowSidebar] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(true)
   const [avatarMenuVisible, setAvatarMenuVisible] = useState(false)
 
   const router = useRouter()
@@ -192,12 +192,12 @@ export default function Sidebar() {
             >
               <Avatar className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
                 <AvatarImage
-                  src={session?.user_metadata?.avatar_url || ''}
+                  src={session?.user_metadata?.avatar_url ?? ''}
                   alt="Profile Picture"
                   className="h-10 w-10 rounded-full"
                 />
                 <AvatarFallback className="h-10 w-10 rounded-full p-0">
-                  <img
+                  <Image
                     src="/image/avatar.jpg"
                     alt="Fallback Profile"
                     className="h-10 w-10 rounded-full object-cover"

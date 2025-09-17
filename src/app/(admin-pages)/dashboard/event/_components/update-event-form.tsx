@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
 import { format } from 'date-fns'
-import { CalendarIcon } from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import {
   Form,
@@ -15,12 +14,6 @@ import {
   FormMessage,
 } from '~/components/ui/form'
 import { Input } from '~/components/ui/input'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '~/components/ui/popover'
-import { cn } from '~/utils/cn'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { api } from '~/trpc/react'
@@ -30,8 +23,8 @@ import Image from 'next/image'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
 import TimePopover from '~/app/_components/ui/time-popover'
 import { useForm, useWatch } from 'react-hook-form'
-import { Calendar } from '~/app/_components/ui/calendar'
 import { useCalendarAccordion } from '~/utils/hooks/useCalendarAccordion'
+import { env } from '~/env'
 
 type EventFormValues = z.infer<typeof eventSchema>
 
@@ -50,7 +43,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
   const updateEvent = api.event.update.useMutation({
     onSuccess: () => {
       toast.success('Event updated successfully!')
-      utils.event.getAll.invalidate()
+      void utils.event.getAll.invalidate()
       router.push('/dashboard/event')
     },
     onError: (error) => {
@@ -127,7 +120,9 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
         thumbnailURL,
       })
     } catch (err) {
-      toast.error('Unexpected error occurred.')
+      toast.error('Unexpected error occurred.', {
+        description: err instanceof Error ? err.message : undefined,
+      })
     }
   }
 
@@ -283,8 +278,7 @@ export default function UpdateEventForm({ id }: UpdateEventFormProps) {
                         src={
                           currentPreview.startsWith('http')
                             ? currentPreview
-                            : process.env
-                                .NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
+                            : env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
                               currentPreview
                         }
                         alt="Thumbnail Preview"

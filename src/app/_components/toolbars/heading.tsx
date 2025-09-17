@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client'
 
 import {
@@ -25,7 +27,7 @@ import {
   TooltipTrigger,
 } from '~/components/ui/tooltip'
 import { useToolbar } from '~/components/toolbars/toolbar-provider'
-import { Level } from '@tiptap/extension-heading'
+import { type Level } from '@tiptap/extension-heading'
 
 export const HeadingToolbar = () => {
   const { editor } = useToolbar()

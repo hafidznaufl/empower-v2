@@ -17,6 +17,7 @@ import { Badge } from '~/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 import { Button } from '~/components/ui/button'
 import { useRouter } from 'next/navigation'
+import { env } from '~/env'
 
 interface EventDetailProps {
   redirectUrl?: string
@@ -90,7 +91,7 @@ export function EventDetail({ redirectUrl, event }: EventDetailProps) {
                 <div className="overflow-hidden rounded-lg">
                   <Image
                     src={
-                      process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
+                      env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
                         event.thumbnailURL || '/placeholder.svg'
                     }
                     alt={event.title}
@@ -226,7 +227,7 @@ export function EventDetail({ redirectUrl, event }: EventDetailProps) {
       </Card>
       <div className="flex justify-end">
         <Button
-          onClick={() => router.push(redirectUrl || '/dashboard/event')}
+          onClick={() => router.push(redirectUrl ?? '/dashboard/event')}
           className="rounded-2xl"
         >
           <ChevronsLeft className="mr-2 h-4 w-4" />

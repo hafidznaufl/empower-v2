@@ -2,10 +2,11 @@
 
 import { createClient } from '@supabase/supabase-js'
 import { resetPasswordSchema } from './schemas'
+import { env } from '~/env'
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  env.NEXT_PUBLIC_SUPABASE_URL,
+  env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 )
 
 export async function resetPassword(formData: { email: string }) {
@@ -16,7 +17,7 @@ export async function resetPassword(formData: { email: string }) {
 
   const { email } = parsedData.data
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/update-password`,
+    redirectTo: `${env.NEXT_PUBLIC_BASE_URL}/auth/update-password`,
   })
 
   if (error) {

@@ -161,7 +161,7 @@ export function DataTable<TData extends { id: string }, TValue>({
                   </Button>
                 ))}
 
-              {(onExportExcel || onExportCsv) && (
+              {(onExportExcel ?? onExportCsv) && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button

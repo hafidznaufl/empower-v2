@@ -9,7 +9,7 @@ import {
   DialogDescription,
 } from '~/components/ui/dialog'
 import { ReportActionsDropdown } from './report-action-dropdown'
-import { ReportIncidentColumn } from './schema'
+import { type ReportIncidentColumn } from './schema'
 import UpdateIncidentStatusForm from './update-status-report'
 
 interface ReportActionsProps {

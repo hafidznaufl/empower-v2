@@ -7,7 +7,6 @@ import Image from 'next/image'
 import LoginBackground from '~/public/image/authbackground.jpg'
 import { useRouter } from 'next/navigation'
 import { Badge } from '~/components/ui/badge'
-import RouteProtectLayout from '../(client-public-pages)/_components/layout/route-protect-layout'
 
 export default function AuthLayout({
   children,
@@ -36,11 +35,11 @@ export default function AuthLayout({
           />
           <div className="absolute bottom-10 left-10 pr-14 text-white">
             <p className="text-xl">
-              "Designed in alignment with the values of Satgas PPKS STT Terpadu
-              Nurul Fikri, this application serves as a secure and empathetic
-              space for survivors and witnesses to report incidents of sexual
-              violence, reflecting the institution’s commitment to a safe and
-              dignified campus environment."
+              &quot;Designed in alignment with the values of Satgas PPKS STT
+              Terpadu Nurul Fikri, this application serves as a secure and
+              empathetic space for survivors and witnesses to report incidents
+              of sexual violence, reflecting the institution&rsquo;s commitment
+              to a safe and dignified campus environment.&quot;
             </p>
             <Badge className="mt-6">- Satgas PPKS STTNF</Badge>
           </div>

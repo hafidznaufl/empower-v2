@@ -37,7 +37,7 @@ const ItalicToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <ItalicIcon className="h-4 w-4" />}
+              {children ?? <ItalicIcon className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

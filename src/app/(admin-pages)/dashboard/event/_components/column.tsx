@@ -1,24 +1,13 @@
 'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
+import { type ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
-import { Clock, FilePen, MapPin, MoreHorizontal, View } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-
+import { Clock, MapPin } from 'lucide-react'
 import { Checkbox } from '~/components/ui/checkbox'
 import { Button } from '~/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '~/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
-import { EventColumn } from './schema'
-import TableSheet from '~/components/tables/table-sheet'
-import UpdateEventForm from './update-event-form'
+import { type EventColumn } from './schema'
 import {
   Dialog,
   DialogContent,
@@ -29,6 +18,7 @@ import {
 } from '~/components/ui/dialog'
 import Image from 'next/image'
 import { EventActions } from './event-actions'
+import { env } from '~/env'
 
 export const columns: ColumnDef<EventColumn>[] = [
   {
@@ -161,9 +151,7 @@ export const columns: ColumnDef<EventColumn>[] = [
               {url ? (
                 <div className="relative aspect-video w-full overflow-hidden rounded-md">
                   <Image
-                    src={
-                      process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL + url
-                    }
+                    src={env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL + url}
                     alt="Thumbnail Preview"
                     width={1600}
                     height={900}

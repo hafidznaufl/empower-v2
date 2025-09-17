@@ -31,6 +31,7 @@ import type { z } from 'zod'
 import type { reportIncidentSchemaColumn } from './schema'
 import { Button } from '~/app/_components/ui/button'
 import { useRouter } from 'next/navigation'
+import { env } from '~/env'
 
 type ReportIncident = z.infer<typeof reportIncidentSchemaColumn>
 
@@ -254,7 +255,7 @@ export function ReportIncidentDetail({ incident }: ReportIncidentDetailProps) {
                       <TooltipTrigger asChild>
                         <Link
                           href={
-                            process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
+                            env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL +
                             url
                           }
                           target="_blank"

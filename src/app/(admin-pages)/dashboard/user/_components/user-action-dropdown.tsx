@@ -1,11 +1,10 @@
 'use client'
 
-import { FilePen, MoreHorizontal, View } from 'lucide-react'
+import { FilePen, MoreHorizontal} from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'

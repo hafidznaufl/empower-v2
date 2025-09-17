@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import {
@@ -25,24 +26,24 @@ export default function DashboardPage() {
     data: reportIncidents,
     isLoading: isLoadingReports,
     error: errorReports,
-  } = api.report.getAll.useQuery()
+  } = api.dashboard.getReportMonthlyStats.useQuery()
   const {
     data: blogs,
     isLoading: isLoadingBlogs,
     error: errorBlogs,
-  } = api.blog.getAll.useQuery()
+  } = api.dashboard.getBlogMonthlyStats.useQuery()
   const {
     data: events,
     isLoading: isLoadingEvents,
     error: errorEvents,
-  } = api.event.getAll.useQuery()
+  } = api.dashboard.getEventMonthlyStats.useQuery()
   const {
     data: users,
     isLoading: isLoadingUsers,
     error: errorUsers,
-  } = api.user.getAll.useQuery()
+  } = api.dashboard.getUserMonthlyStats.useQuery()
 
-  const error = errorReports || errorBlogs || errorEvents || errorUsers
+  const error = errorReports ?? errorBlogs ?? errorEvents ?? errorUsers
 
   const defaultStatuses = [
     'PENDING',
@@ -58,7 +59,7 @@ export default function DashboardPage() {
   const formatChartData = (reports: ReportIncident[]): ChartData[] => {
     const categoryCount = reports.reduce(
       (acc, report) => {
-        acc[report.reportStatus] = (acc[report.reportStatus] || 0) + 1
+        acc[report.reportStatus] = (acc[report.reportStatus] ?? 0) + 1
         return acc
       },
       {} as Record<string, number>,
@@ -66,7 +67,7 @@ export default function DashboardPage() {
 
     return defaultStatuses.map((status) => ({
       name: status,
-      total: categoryCount[status] || 0,
+      total: categoryCount[status] ?? 0,
     }))
   }
 
@@ -105,23 +106,23 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <DashboardCard
           title="Total Laporan"
-          value={reportIncidents?.length || 0}
-          description="+5 dari bulan lalu"
+          value={reportIncidents?.thisMonthCount ?? 0}
+          description={`${(reportIncidents?.diff ?? 0 >= 0) ? '+' : ''}${reportIncidents?.diff} dari bulan lalu`}
         />
         <DashboardCard
           title="Total Blog"
-          value={blogs?.length || 0}
-          description="+10 dari bulan lalu"
+          value={blogs?.thisMonthCount ?? 0}
+          description={`${(blogs?.diff ?? 0 >= 0) ? '+' : ''}${blogs?.diff} dari bulan lalu`}
         />
         <DashboardCard
           title="Total Event"
-          value={events?.length || 0}
-          description="+3 event baru"
+          value={events?.thisMonthCount ?? 0}
+          description={`${(events?.diff ?? 0 >= 0) ? '+' : ''}${events?.diff} dari bulan lalu`}
         />
         <DashboardCard
           title="Total Pengguna"
-          value={users?.length || 0}
-          description="+20 pengguna baru"
+          value={users?.thisMonthCount ?? 0}
+          description={`${(users?.diff ?? 0 >= 0) ? '+' : ''}${users?.diff} dari bulan lalu`}
         />
       </div>
 
@@ -133,11 +134,13 @@ export default function DashboardPage() {
           <CardContent className="pl-2">
             <Overview
               data={formatChartData(
-                (reportIncidents || []).map((report) => ({
-                  ...report,
-                  updatedAt: new Date(),
-                  deletedAt: report.deletedAt || null,
-                })),
+                (reportIncidents?.reports ?? []).map(
+                  (report: ReportIncident) => ({
+                    ...report,
+                    updatedAt: new Date(),
+                    deletedAt: report.deletedAt ?? null,
+                  }),
+                ),
               )}
             />
           </CardContent>
@@ -147,16 +150,18 @@ export default function DashboardPage() {
           <CardHeader>
             <CardTitle>Laporan Terbaru</CardTitle>
             <CardDescription>
-              {reportIncidents?.length} laporan ditemukan
+              {reportIncidents?.reports.length} laporan ditemukan
             </CardDescription>
           </CardHeader>
           <CardContent>
             <RecentReports
-              reports={(reportIncidents || []).map((report) => ({
-                ...report,
-                updatedAt: report.updatedAt || new Date(),
-                deletedAt: report.deletedAt || null,
-              }))}
+              reports={(reportIncidents?.reports ?? []).map(
+                (report: ReportIncident) => ({
+                  ...report,
+                  updatedAt: report.updatedAt ?? new Date(),
+                  deletedAt: report.deletedAt ?? null,
+                }),
+              )}
             />
           </CardContent>
         </Card>

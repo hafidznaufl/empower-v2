@@ -38,7 +38,7 @@ const BulletListToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <List className="h-4 w-4" />}
+              {children ?? <List className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

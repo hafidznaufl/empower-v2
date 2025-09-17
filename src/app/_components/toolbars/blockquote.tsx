@@ -36,7 +36,7 @@ const BlockquoteToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <TextQuote className="h-4 w-4" />}
+              {children ?? <TextQuote className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

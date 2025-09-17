@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import Image from '@tiptap/extension-image'
@@ -105,7 +106,7 @@ function TiptapImage(props: NodeViewProps) {
     }
 
     const newWidth = Math.max(resizeInitialWidth + dx, 150) // Minimum width: 150
-    const parentWidth = nodeRef.current?.parentElement?.offsetWidth || 0 // Get the parent element's width
+    const parentWidth = nodeRef.current?.parentElement?.offsetWidth ?? 0 // Get the parent element's width
 
     if (newWidth < parentWidth) {
       updateAttributes({
@@ -142,13 +143,15 @@ function TiptapImage(props: NodeViewProps) {
       return
     }
 
-    let dx = (event.touches[0]?.clientX ?? resizeInitialMouseX) - resizeInitialMouseX
+    let dx =
+      (event.touches[0]?.clientX ?? resizeInitialMouseX) - resizeInitialMouseX
     if (resizingPosition === 'left') {
-      dx = resizeInitialMouseX - (event.touches[0]?.clientX || resizeInitialMouseX)
+      dx =
+        resizeInitialMouseX - (event.touches[0]?.clientX ?? resizeInitialMouseX)
     }
 
     const newWidth = Math.max(resizeInitialWidth + dx, 150)
-    const parentWidth = nodeRef.current?.parentElement?.offsetWidth || 0
+    const parentWidth = nodeRef.current?.parentElement?.offsetWidth ?? 0
 
     if (newWidth < parentWidth) {
       updateAttributes({

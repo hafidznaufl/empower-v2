@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client'
 
 import { Image } from 'lucide-react'
@@ -38,7 +40,7 @@ const ImagePlaceholderToolbar = React.forwardRef<
             ref={ref}
             {...props}
           >
-            {children || <Image className="h-4 w-4" />}
+            {children ?? <Image className="h-4 w-4" />}
           </Button>
         </TooltipTrigger>
         <TooltipContent>

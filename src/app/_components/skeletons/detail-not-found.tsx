@@ -1,14 +1,14 @@
 import { AlertTriangle } from 'lucide-react'
 import React from 'react'
 import { Button } from '../ui/button'
-import { useRouter } from 'next/navigation'
 
 interface DetailNotFoundProps {
   description?: string
 }
 
-export default function DetailNotFound({description = 'Data'}: DetailNotFoundProps) {
-  const router = useRouter()
+export default function DetailNotFound({
+  description = 'Data',
+}: DetailNotFoundProps) {
   return (
     <div className="flex flex-col items-center justify-center gap-4 p-10 text-center text-muted-foreground">
       <AlertTriangle className="h-10 w-10 text-destructive" />

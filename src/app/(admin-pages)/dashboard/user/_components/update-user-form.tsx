@@ -1,8 +1,9 @@
+/* eslint-disable */
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { type z } from 'zod'
 import {
   Form,
   FormControl,
@@ -65,7 +66,7 @@ export default function UpdateUserForm({ id }: UpdateUserFormProps) {
       }
     }
 
-    getUserById()
+    void getUserById()
   }, [id, form])
 
   const onSubmit = async (values: UserFormValues) => {

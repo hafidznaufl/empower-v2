@@ -18,7 +18,7 @@ export default function TimePopover({
   onChange: (d: Date) => void
   use24HourFormat?: boolean
 }) {
-  const initialDate = value || new Date(new Date().setHours(0, 0, 0, 0))
+  const initialDate = value ?? new Date(new Date().setHours(0, 0, 0, 0))
   const [hours, setHours] = useState(initialDate.getHours())
   const [minutes, setMinutes] = useState(initialDate.getMinutes())
   const [period, setPeriod] = useState(

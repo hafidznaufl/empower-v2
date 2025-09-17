@@ -8,7 +8,7 @@ import {
   DialogDescription,
 } from '~/components/ui/dialog'
 import UpdateUserForm from './update-user-form'
-import { UserColumn } from './schema'
+import { type UserColumn } from './schema'
 import { UserActionsDropdown } from './user-action-dropdown'
 
 interface UserActionsProps {

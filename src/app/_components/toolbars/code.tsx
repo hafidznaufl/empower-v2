@@ -36,7 +36,7 @@ const CodeToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <Code2 className="h-4 w-4" />}
+              {children ?? <Code2 className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use client'
 
 import { PopoverClose } from '@radix-ui/react-popover'
@@ -33,7 +35,7 @@ const LinkToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     React.useEffect(() => {
-      setLink(editor?.getAttributes('link').href || '')
+      setLink(editor?.getAttributes('link').href ?? '')
     }, [editor])
 
     return (

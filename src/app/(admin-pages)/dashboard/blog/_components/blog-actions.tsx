@@ -9,7 +9,7 @@ import {
   DialogDescription,
 } from '~/components/ui/dialog'
 import { EventActionsDropdown } from './blog-action-dropdown'
-import { BlogColumn } from './schema'
+import { type BlogColumn } from './schema'
 import UpdateBlogStatusForm from './update-blog-form'
 
 interface BlogActionsProps {

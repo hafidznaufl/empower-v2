@@ -5,34 +5,19 @@ import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import {
   BadgeCheck,
-  FilePen,
-  MoreHorizontal,
-  BadgeMinus,
   Newspaper,
   PenLine,
   Megaphone,
   File,
   Archive,
   Mail,
-  View,
 } from 'lucide-react'
-import { Button } from '~/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '~/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
 import { Checkbox } from '~/components/ui/checkbox'
-import TableSheet from '~/components/tables/table-sheet'
-import UpdateBlogForm from './update-blog-form'
-import { BlogColumn } from './schema'
+import { type BlogColumn } from './schema'
 import { Badge } from '~/components/ui/badge'
 import { DataTableCategoryColumnHeader } from '~/components/tables/data-table-category-header'
 import { DataTableStatusColumnHeader } from '~/components/tables/data-table-status-header'
-import { useRouter } from 'next/navigation'
 import { BlogActions } from './blog-actions'
 
 export const columns: ColumnDef<BlogColumn>[] = [

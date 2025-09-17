@@ -20,6 +20,7 @@ import {
 import { toast } from 'sonner'
 import { registerSchema, type RegisterSchema } from './schemas'
 import { registerAction } from './actions'
+import { env } from '~/env'
 
 export default function RegisterForm() {
   const router = useRouter()
@@ -38,9 +39,7 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterSchema) => {
     const result = await registerAction(data)
 
-    const ADMIN_EMAILS = process.env.NEXT_PUBLIC_ADMIN_EMAILS
-      ? process.env.NEXT_PUBLIC_ADMIN_EMAILS.split(',')
-      : []
+    const ADMIN_EMAILS = env.ADMIN_EMAILS ? env.ADMIN_EMAILS.split(',') : []
 
     console.log('ADMIN', ADMIN_EMAILS)
 

@@ -37,7 +37,7 @@ const UnderlineToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
               ref={ref}
               {...props}
             >
-              {children || <UnderlineIcon className="h-4 w-4" />}
+              {children ?? <UnderlineIcon className="h-4 w-4" />}
             </Button>
           </TooltipTrigger>
           <TooltipContent>

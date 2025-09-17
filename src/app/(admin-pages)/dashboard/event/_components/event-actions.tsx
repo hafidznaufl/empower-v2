@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { EventColumn } from './schema'
+import { type EventColumn } from './schema'
 import { Sheet, SheetContent } from '~/components/ui/sheet'
 import {
   DialogHeader,

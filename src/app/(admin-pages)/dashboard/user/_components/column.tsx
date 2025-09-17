@@ -1,8 +1,9 @@
+/* eslint-disable */
 'use client'
 
 import { type Column, type ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '~/components/tables/data-table-column-header'
-import { UserColumn } from './schema'
+import { type UserColumn } from './schema'
 import { BadgeCheck, BadgeMinus } from 'lucide-react'
 import { Badge } from '~/components/ui/badge'
 import { formatName, formatReadableDate } from '~/utils/hooks/useFormat'

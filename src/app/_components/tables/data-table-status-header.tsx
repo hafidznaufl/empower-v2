@@ -1,7 +1,6 @@
 import { type Column } from '@tanstack/react-table'
 import {
   BadgeCheck,
-  BadgeMinus,
   Archive,
   ChevronsUpDown,
   EyeOff,
