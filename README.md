@@ -30,7 +30,7 @@ Make sure you have the following installed:
 ### Installation
 
 ```bash
-git clone https://github.com/Prosesin-ID/Empower.git
+git clone https://gitlab.com/stt-terpadu-nurul-fikri/dev/empower.git
 cd empower
 pnpm install # or npm install
 ```
