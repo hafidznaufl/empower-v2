@@ -1,3 +1,4 @@
+import { LinkedInLogoIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 
 export default function FooterContent() {
@@ -9,7 +10,7 @@ export default function FooterContent() {
         <div>
           © {currentYear} Empower Powered by{' '}
           <span className="animate-marquee font-semibold">
-            Satgas PPKS STTNF
+            Satgas PPKPT STTNF
           </span>
           . All Rights Reserved.
         </div>
@@ -22,15 +23,16 @@ export default function FooterContent() {
               rel="noopener noreferrer"
               className="underline hover:text-white"
             >
+              <LinkedInLogoIcon className="mr-1 inline h-4 w-4" />
               @hafidznaufl
             </Link>
           </span>
         </div>
       </div>
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="animate-blob absolute -top-10 left-1/4 h-10 w-48 rounded-full bg-primary opacity-30 blur-2xl" />
-        <div className="animate-blob animation-delay-2000 absolute right-1/4 top-0 h-10 w-36 rounded-full bg-primary opacity-30 blur-2xl" />
-        <div className="animate-blob animation-delay-4000 absolute bottom-0 left-1/2 h-20 w-40 rounded-full bg-primary opacity-30 blur-2xl" />
+        <div className="animate-blob absolute -top-10 left-1/4 h-10 w-48 rounded-full bg-primary opacity-20 blur-2xl" />
+        <div className="animate-blob animation-delay-2000 absolute right-1/4 top-0 h-10 w-36 rounded-full bg-primary opacity-20 blur-2xl" />
+        <div className="animate-blob animation-delay-4000 left-1/6 absolute bottom-0 h-20 w-40 rounded-full bg-primary opacity-10 blur-2xl" />
       </div>
     </div>
   )

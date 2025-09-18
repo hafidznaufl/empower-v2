@@ -184,8 +184,9 @@ export default function ReportIncidentForm() {
       <CardHeader>
         <CardTitle>Form Report Incident</CardTitle>
         <CardDescription>
-          If you have experienced sexual harassment, please report it here. Your
-          data is secure and confidential.
+          If you have experienced any form of violence—whether sexual
+          harassment, physical abuse, verbal harassment, or bullying—please
+          report it here. Your data will remain secure and confidential.
         </CardDescription>
       </CardHeader>
       <CardContent>

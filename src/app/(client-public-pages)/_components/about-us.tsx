@@ -9,8 +9,13 @@ import {
 } from '~/components/ui/card'
 import sttnfImage from '~/public/image/sttnf.jpg'
 import logoSatgasSTTNF from '~/public/image/logo-satgas-sttnf.jpg'
+import { env } from '~/env'
+import { EnvelopeClosedIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
 
 export default function AboutUs() {
+  const instagramUsername = env.NEXT_PUBLIC_INSTAGRAM_USERNAME
+  const instagramUrl = `https://www.instagram.com/${instagramUsername}/`
+
   return (
     <div className="container mx-auto space-y-8 px-4 pb-12 pt-8">
       <Card className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -28,7 +33,7 @@ export default function AboutUs() {
           <div className="flex items-center justify-center">
             <Image
               src={logoSatgasSTTNF}
-              alt="Satgas PPKS STTNF Logo"
+              alt="Satgas PPKPT STTNF Logo"
               width={100}
               height={100}
               className="rounded-full border"
@@ -37,45 +42,51 @@ export default function AboutUs() {
           </div>
           <div>
             <CardTitle className="text-2xl font-semibold md:text-xl">
-              About Satgas PPKS STT Terpadu Nurul Fikri
+              About Satgas PPKPT STT Terpadu Nurul Fikri
             </CardTitle>
             <CardDescription className="mt-2 text-justify">
-              The Sexual Violence Prevention and Handling Task Force (Satgas
-              PPKS) was established as a form of institutional commitment to
-              creating a safe, inclusive, and sexual violence-free campus
-              environment. Based on the Ministry of Education Regulation No. 30
-              of 2021, this task force serves as the front line in preventing
-              and handling cases within STT Terpadu Nurul Fikri.
+              The Violence Prevention and Handling Task Force (Satgas PPKPT) was
+              established as a form of institutional commitment to creating a
+              safe, inclusive, and violence-free campus environment. Based on
+              the Ministry of Education Regulation No. 30 of 2021, this task
+              force serves as the front line in preventing and handling cases of
+              violence — including sexual violence, physical abuse, verbal
+              harassment, bullying, and other forms of violence — within STT
+              Terpadu Nurul Fikri.
             </CardDescription>
             <CardDescription className="mt-2 text-justify">
-              The main duties of Satgas PPKS include education and outreach,
+              The main duties of Satgas PPKPT include education and outreach,
               receiving and following up on reports, providing assistance, and
               formulating policy recommendations for the institution.
             </CardDescription>
           </div>
           <div>
             <CardTitle className="text-xl font-semibold">
-              Vision & Mission of Satgas PPKS STT Terpadu Nurul Fikri
+              Vision & Mission of Satgas PPKPT STT Terpadu Nurul Fikri
             </CardTitle>
             <CardDescription className="mt-2 text-justify">
               <strong>Vision:</strong> To create a safe, dignified, and
-              violence-free campus environment.
+              violence-free campus environment for everyone.
             </CardDescription>
             <CardDescription className="text-justify">
               <strong>Mission:</strong>
               <ul className="list-disc pl-6">
                 <li>
                   Raise awareness and understanding among the academic community
-                  about sexual violence.
+                  about all forms of violence, including sexual violence,
+                  physical abuse, bullying, and harassment.
                 </li>
                 <li>
                   Provide prompt, appropriate, and victim-centered handling
-                  services.
+                  services for survivors.
                 </li>
-                <li>Advocate for fair campus policies that protect victims.</li>
+                <li>
+                  Advocate for fair campus policies that protect victims and
+                  prevent recurrence of violence.
+                </li>
                 <li>
                   Establish collaboration with internal and external parties for
-                  sexual violence prevention.
+                  comprehensive violence prevention and handling.
                 </li>
               </ul>
             </CardDescription>
@@ -85,7 +96,7 @@ export default function AboutUs() {
               General Membership Structure
             </CardTitle>
             <CardDescription className="mt-2 text-justify">
-              Satgas PPKS STTNF consists of representatives from lecturers,
+              Satgas PPKPT STTNF consists of representatives from lecturers,
               educational staff, and students. They are selected through a
               transparent process and are specially trained to handle cases of
               sexual violence professionally, confidentially, and
@@ -99,17 +110,19 @@ export default function AboutUs() {
             <CardDescription className="mt-2">
               <p>
                 Email:{' '}
-                <a href="mailto:ppks@nurulfikri.ac.id" className="underline">
-                  ppks@nurulfikri.ac.id
+                <a
+                  href="mailto:satgas-ppkpt@nurulfikri.ac.id"
+                  className="underline"
+                >
+                  <EnvelopeClosedIcon className="mr-1 inline h-4 w-4" />
+                  satgas-ppkpt@nurulfikri.ac.id
                 </a>
               </p>
               <p>
                 Instagram:{' '}
-                <a
-                  href="https://www.instagram.com/satgasppks.sttnf/"
-                  className="underline"
-                >
-                  @satgasppks.sttnf
+                <a href={instagramUrl} className="underline">
+                  <InstagramLogoIcon className="mr-1 inline h-4 w-4" />@
+                  {instagramUsername}
                 </a>
               </p>
               <p>

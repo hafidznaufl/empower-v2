@@ -35,13 +35,14 @@ export default function AuthLayout({
           />
           <div className="absolute bottom-10 left-10 pr-14 text-white">
             <p className="text-xl">
-              &quot;Designed in alignment with the values of Satgas PPKS STT
+              &quot;Designed in alignment with the values of Satgas PPKPT STT
               Terpadu Nurul Fikri, this application serves as a secure and
               empathetic space for survivors and witnesses to report incidents
-              of sexual violence, reflecting the institution&rsquo;s commitment
-              to a safe and dignified campus environment.&quot;
+              of any form of violence, reflecting the institution&rsquo;s
+              commitment to a safe, respectful, and dignified campus
+              environment.&quot;
             </p>
-            <Badge className="mt-6">- Satgas PPKS STTNF</Badge>
+            <Badge className="mt-6">- Satgas PPKPT STTNF</Badge>
           </div>
         </div>
         {children}

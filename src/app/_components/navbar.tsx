@@ -40,8 +40,8 @@ export default function Navbar() {
   return (
     <div className="bg-clip fixed top-0 z-[99] w-full overflow-hidden border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="animate-blob absolute -top-10 left-1/4 h-10 w-48 rounded-full bg-primary opacity-30 blur-2xl" />
-        <div className="animate-blob animation-delay-2000 absolute right-1/4 top-0 h-10 w-36 rounded-full bg-primary opacity-30 blur-2xl" />
+        <div className="animate-blob absolute -top-10 left-1/4 h-10 w-48 rounded-full bg-primary opacity-20 blur-2xl" />
+        <div className="animate-blob animation-delay-2000 absolute right-1/4 top-0 h-10 w-36 rounded-full bg-primary opacity-20 blur-2xl" />
         <div className="animate-blob animation-delay-4000 left-1/6 absolute bottom-0 h-20 w-40 rounded-full bg-primary opacity-10 blur-2xl" />
       </div>
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
@@ -52,19 +52,19 @@ export default function Navbar() {
           <div>
             <Image
               src={logoSatgas}
-              alt="Logo Satgas PPKS STTNF"
+              alt="Logo Satgas PPKPT STTNF"
               width={35}
               height={35}
               className="rounded-full"
             />
           </div>
           <Separator orientation="vertical" className="mx-2 h-8" />
-          <div className='-translate-y-[0.10rem]'>
+          <div className="-translate-y-[0.10rem]">
             <p className="bg-gradient-to-tr from-primary bg-clip-text text-base font-extrabold tracking-wide text-transparent">
               Empower
             </p>
             <p className="text-xs text-muted-foreground">
-              Powered by Satgas PPKS STTNF
+              Powered by Satgas PPKPT STTNF
             </p>
           </div>
         </div>
@@ -75,8 +75,8 @@ export default function Navbar() {
                 key={item.path}
                 className={`relative flex h-8 items-center rounded-full px-4 text-sm transition-colors duration-200 ${
                   pathname === item.path
-                    ? 'border border-foreground/15 bg-foreground/5 font-semibold'
-                    : 'border border-transparent'
+                    ? 'border border-foreground/15 bg-foreground/5 font-medium'
+                    : 'border border-transparent font-normal'
                 } hover:bg-foreground/10`}
               >
                 {item.name}
@@ -101,7 +101,10 @@ export default function Navbar() {
                     </AvatarFallback>
                   </Avatar>
                 </PopoverTrigger>
-                <PopoverContent className="mt-4 w-30 p-2 rounded-xl" align="end">
+                <PopoverContent
+                  className="w-30 mt-4 rounded-xl p-2"
+                  align="end"
+                >
                   <div className="flex flex-col gap-2">
                     <Button
                       variant={'secondary'}
