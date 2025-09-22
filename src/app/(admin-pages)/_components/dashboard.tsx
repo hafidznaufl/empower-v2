@@ -127,7 +127,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-        <Card className="col-span-9">
+        <Card className="col-span-9 shadow-none">
           <CardHeader>
             <CardTitle>Statistik Kategori Laporan</CardTitle>
           </CardHeader>
@@ -146,7 +146,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="col-span-3">
+        <Card className="col-span-3 shadow-none">
           <CardHeader>
             <CardTitle>Laporan Terbaru</CardTitle>
             <CardDescription>
@@ -180,7 +180,7 @@ function DashboardCard({
   description: string
 }) {
   return (
-    <Card>
+    <Card className="shadow-none">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
       </CardHeader>

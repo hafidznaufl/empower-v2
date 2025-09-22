@@ -200,6 +200,8 @@ export default function Sidebar() {
                   <Image
                     src="/image/avatar.jpg"
                     alt="Fallback Profile"
+                    width={40}
+                    height={40}
                     className="h-10 w-10 rounded-full object-cover"
                     loading="lazy"
                   />

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import LoginBackground from '~/public/image/authbackground.jpg'
 import { useRouter } from 'next/navigation'
 import { Badge } from '~/components/ui/badge'
+import AuthImage from './_components/auth-image'
 
 export default function AuthLayout({
   children,
@@ -25,14 +26,7 @@ export default function AuthLayout({
           <ChevronsLeft />
         </Button>
         <div className="relative hidden bg-muted lg:block">
-          <Image
-            src={LoginBackground}
-            alt="Image"
-            width="1920"
-            height="1080"
-            className="h-screen object-cover dark:brightness-[0.2] dark:grayscale"
-            placeholder="blur"
-          />
+          <AuthImage />
           <div className="absolute bottom-10 left-10 pr-14 text-white">
             <p className="text-xl">
               &quot;Designed in alignment with the values of Satgas PPKPT STT

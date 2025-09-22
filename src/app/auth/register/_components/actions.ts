@@ -48,6 +48,7 @@ export const registerAction = async (values: {
     password,
     options: {
       data: { name, role, referralCode },
+      emailRedirectTo: `${env.NEXT_PUBLIC_BASE_URL}/auth/verify`,
     },
   })
 
