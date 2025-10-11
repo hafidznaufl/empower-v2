@@ -3,8 +3,6 @@
 import '~/styles/globals.css'
 import { Button } from '~/components/ui/button'
 import { ChevronsLeft } from 'lucide-react'
-import Image from 'next/image'
-import LoginBackground from '~/public/image/authbackground.jpg'
 import { useRouter } from 'next/navigation'
 import { Badge } from '~/components/ui/badge'
 import AuthImage from './_components/auth-image'
