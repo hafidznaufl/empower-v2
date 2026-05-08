@@ -153,7 +153,7 @@ export default function UpdateBlogStatusForm({
         >
           {form.formState.isSubmitting
             ? 'Updating...'
-            : 'Update Incident Status'}
+            : 'Update Blog Status'}
         </Button>
       </form>
     </Form>

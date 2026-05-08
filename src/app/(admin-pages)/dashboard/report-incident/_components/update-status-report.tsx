@@ -137,7 +137,7 @@ export default function UpdateIncidentStatusForm({
         >
           {form.formState.isSubmitting
             ? 'Updating...'
-            : 'Update Incident Status'}
+            : 'Update Report Status'}
         </Button>
       </form>
     </Form>

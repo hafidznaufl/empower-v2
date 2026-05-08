@@ -27,6 +27,8 @@ import {
 import { formatName } from '~/utils/hooks/useFormat'
 import { toast } from 'sonner'
 import { useClientSession } from '~/utils/hooks/useSession'
+import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from 'next/navigation'
 
 type UserFormValues = z.infer<typeof userSchema>
 
@@ -37,6 +39,7 @@ interface UpdateUserFormProps {
 export default function UpdateUserForm({ id }: UpdateUserFormProps) {
   const session = useClientSession()
   const userId = session?.user.id
+  const router = useRouter()
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(userSchema),
@@ -80,6 +83,8 @@ export default function UpdateUserForm({ id }: UpdateUserFormProps) {
 
       if (result.success) {
         toast.success(`Role successfully updated to ${values.role}`)
+        router.push('/dashboard/user')
+        router.refresh()
       } else {
         toast.error(`Failed to update role: ${result.message}`)
       }

@@ -76,12 +76,18 @@ export async function loginAction(values: { email: string; password: string }) {
     return { success: false, message: error.message }
   }
 
-  await api.user.create({
+  const existingUser = await api.user.getById({
     id: data.user?.id!,
-    email: data.user?.email ?? '',
-    name: data.user?.user_metadata?.name ?? 'Unnamed User',
-    role: data.user?.user_metadata?.role ?? 'CLIENT',
   })
+
+  if (!existingUser) {
+    await api.user.create({
+      id: data.user?.id!,
+      email: data.user?.email ?? '',
+      name: data.user?.user_metadata?.name ?? 'Unnamed User',
+      role: data.user?.user_metadata?.role ?? 'CLIENT',
+    })
+  }
 
   const { data: session } = await supabase.auth.getSession()
 

@@ -27,6 +27,7 @@ import { type FormEvent, useState } from 'react'
 import { BarLoader } from 'react-spinners'
 import { cn } from '~/utils/cn'
 import { useSupabaseUpload } from '~/utils/hooks/useSupabaseUpload'
+import { env } from '~/env'
 
 export interface ImagePlaceholderOptions {
   HTMLAttributes: Record<string, any>
@@ -159,7 +160,7 @@ function ImagePlaceholderComponent(props: NodeViewProps) {
     for (const file of acceptedFiles) {
       const relativePath = await uploadFile(file, 'blogs', 'contents')
       if (relativePath) {
-        const fullUrl = `https://ppljqjgqakumvwpujdxg.supabase.co/storage/v1/object/public${relativePath}`
+        const fullUrl = `${env.NEXT_PUBLIC_SUPABASE_STORAGE_BASE_URL}${relativePath}`
         editor.chain().focus().setImage({ src: fullUrl }).run()
         extension.options.onDrop?.([file], editor)
       }

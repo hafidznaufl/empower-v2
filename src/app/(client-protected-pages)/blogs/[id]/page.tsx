@@ -92,6 +92,8 @@ const BlogPage = () => {
                 <Image
                   src="/image/avatar.jpg"
                   alt="Fallback Profile"
+                  width={50}
+                  height={50}
                   className="h-10 w-10 rounded-full object-cover"
                   loading="lazy"
                 />

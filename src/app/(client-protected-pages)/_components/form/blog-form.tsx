@@ -38,6 +38,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/app/_components/ui/select'
+import { useEffect } from 'react'
 
 export default function BlogForm() {
   const router = useRouter()
@@ -45,8 +46,15 @@ export default function BlogForm() {
   const createBlog = api.blog.create.useMutation()
 
   const session = useClientUserSession()
-  const userId = session?.id as string
 
+  
+  const userId = session?.id as string
+  useEffect(() => {
+    console.log(session)
+    console.log(session?.id)
+    console.log(userId)
+  }, [session])
+  
   const form = useForm<z.infer<typeof blogSchema>>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
